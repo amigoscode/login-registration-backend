@@ -17,7 +17,7 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class AppUser implements UserDetails {
+public class UserCredentials implements UserDetails {
 
 
     @SequenceGenerator(
@@ -31,22 +31,18 @@ public class AppUser implements UserDetails {
             generator = "student_sequence"
     )
     private Long id;
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private AppUserRole appUserRole;
+    private UserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public AppUser(String firstName,
-                   String lastName,
-                   String email,
-                   String password,
-                   AppUserRole appUserRole) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public UserCredentials(
+                           String email,
+                           String password,
+                           UserRole appUserRole) {
+
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
@@ -69,13 +65,6 @@ public class AppUser implements UserDetails {
         return email;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
 
     @Override
     public boolean isAccountNonExpired() {

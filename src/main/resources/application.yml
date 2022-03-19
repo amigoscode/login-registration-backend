@@ -1,27 +1,44 @@
 server:
+  port: 9191
   error:
     include-message: always
     include-binding-errors: always
 
+
+
+
 spring:
   datasource:
-    password:
-    url: jdbc:postgresql://localhost:5432/registration
-    username:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: bharani16
+    url: jdbc:mysql://localhost:3306/registration?serverTimezone=UTC
+    username: root
   jpa:
     hibernate:
       ddl-auto: create-drop
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQL5Dialect
         format_sql: true
     show-sql: true
 
+ # mail:
+  #  host: smtp.gmail.com
+   # port: 587
+    #username: sravan.mummadi06@gmail.com
+    #password: Ishikammulu1!
+    #properties:
+      #mail:
+        #smtp:
+          #auth: true
+          #starttls:
+            #enable: true
   mail:
-    host: localhost
-    port: 1025
-    username: hello
-    password: hello
+    host: smtp.gmail.com
+    port: 587
+    username: ethniconnect@gmail.com
+    password: nftvtqgflwntjipb
+
 
     properties:
       mail:
@@ -34,4 +51,3 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
-

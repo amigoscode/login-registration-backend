@@ -32,7 +32,7 @@ public class AppUserService implements UserDetailsService {
                                 String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    public String signUpUser(AppUser appUser) {
+    public String signUpUser(UserCredentials appUser) {
         boolean userExists = appUserRepository
                 .findByEmail(appUser.getEmail())
                 .isPresent();

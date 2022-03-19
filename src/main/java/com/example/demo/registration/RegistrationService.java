@@ -1,7 +1,7 @@
 package com.example.demo.registration;
 
-import com.example.demo.appuser.AppUser;
-import com.example.demo.appuser.AppUserRole;
+import com.example.demo.appuser.UserCredentials;
+import com.example.demo.appuser.UserRole;
 import com.example.demo.appuser.AppUserService;
 import com.example.demo.email.EmailSender;
 import com.example.demo.registration.token.ConfirmationToken;
@@ -30,17 +30,15 @@ public class RegistrationService {
         }
 
         String token = appUserService.signUpUser(
-                new AppUser(
-                        request.getFirstName(),
-                        request.getLastName(),
+                new UserCredentials(
                         request.getEmail(),
                         request.getPassword(),
-                        AppUserRole.USER
+                        UserRole.BUSINESS
 
                 )
         );
 
-        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+        String link = "www.google.com";
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
