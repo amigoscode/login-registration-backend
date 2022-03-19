@@ -11,14 +11,16 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: bharani16
-    url: jdbc:mysql://localhost:3306/registration?serverTimezone=UTC
+    initialization-mode: ALWAYS
+    #url: jdbc:mysql://localhost:3306/registration?serverTimezone=UTC
+    url: jdbc:mysql://ethniconnect.cs03gfixeofo.us-east-2.rds.amazonaws.com:3306/ethniconnect
     username: root
   jpa:
     hibernate:
       ddl-auto: create-drop
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     show-sql: true
 
