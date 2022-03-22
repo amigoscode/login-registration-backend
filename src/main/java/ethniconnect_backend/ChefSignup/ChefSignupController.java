@@ -1,18 +1,17 @@
-package ethniconnect_backend.registration;
+package ethniconnect_backend.ChefSignup;
 
-import ethniconnect_backend.resetpassword.ResetPasswordRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/v1/registration")
 @AllArgsConstructor
-public class RegistrationController {
+public class ChefSignupController {
 
-    private final RegistrationService registrationService;
+    private final ChefSignupService registrationService;
 
     @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
+    public String register(@RequestBody ChefSignupRequest request) {
         return registrationService.register(request);
     }
 

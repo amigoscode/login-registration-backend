@@ -1,4 +1,4 @@
-package ethniconnect_backend.Chefprofile;
+package ethniconnect_backend.Chef;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

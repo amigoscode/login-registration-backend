@@ -1,13 +1,12 @@
-package ethniconnect_backend.registration;
+package ethniconnect_backend.ChefSignup;
 
-import ethniconnect_backend.appuser.UserCredentials;
-import ethniconnect_backend.appuser.UserRole;
-import ethniconnect_backend.appuser.AppUserService;
+import ethniconnect_backend.UserCredentials.UserCredentials;
+import ethniconnect_backend.UserCredentials.UserRole;
+import ethniconnect_backend.UserCredentials.UserCredentialsService;
 import ethniconnect_backend.email.EmailSender;
 import ethniconnect_backend.email.EmailService;
-import ethniconnect_backend.registration.token.ConfirmationToken;
-import ethniconnect_backend.registration.token.ConfirmationTokenService;
-import ethniconnect_backend.resetpassword.ResetPasswordRequest;
+import ethniconnect_backend.ChefSignup.token.ConfirmationToken;
+import ethniconnect_backend.ChefSignup.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,15 +15,15 @@ import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
-public class RegistrationService {
+public class ChefSignupService {
 
-    private final AppUserService appUserService;
+    private final UserCredentialsService appUserService;
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
     private EmailService emailService;
 
-    public String register(RegistrationRequest request) {
+    public String register(ChefSignupRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
 

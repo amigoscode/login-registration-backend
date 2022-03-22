@@ -1,12 +1,12 @@
 package ethniconnect_backend.resetpassword;
 
-import ethniconnect_backend.appuser.AppUserRepository;
-import ethniconnect_backend.appuser.AppUserService;
-import ethniconnect_backend.appuser.UserCredentials;
+import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
+import ethniconnect_backend.UserCredentials.UserCredentialsService;
+import ethniconnect_backend.UserCredentials.UserCredentials;
 import ethniconnect_backend.email.EmailSender;
 import ethniconnect_backend.email.EmailService;
-import ethniconnect_backend.registration.token.ConfirmationToken;
-import ethniconnect_backend.registration.token.ConfirmationTokenService;
+import ethniconnect_backend.ChefSignup.token.ConfirmationToken;
+import ethniconnect_backend.ChefSignup.token.ConfirmationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +17,9 @@ import java.time.LocalDateTime;
 public class ResetPasswordService {
 
     @Autowired
-    AppUserService appUserService;
+    UserCredentialsService appUserService;
     @Autowired
-    AppUserRepository appUserRepository;
+    UserCredentialsRepository appUserRepository;
     @Autowired
       EmailSender emailSender;
       @Autowired
@@ -36,7 +36,7 @@ public class ResetPasswordService {
             String link = "http://localhost:5000/api/v1/resetpassword/confirm?token=" + token;
             emailSender.send(
                     resetPasswordRequest.getEmailId(),
-                    emailService.buildEmail("User", link));
+                    emailService.buildResetPasswordEmail("User", link));
         }
 
     }

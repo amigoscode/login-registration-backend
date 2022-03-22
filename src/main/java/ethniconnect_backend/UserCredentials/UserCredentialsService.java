@@ -1,7 +1,7 @@
-package ethniconnect_backend.appuser;
+package ethniconnect_backend.UserCredentials;
 
-import ethniconnect_backend.registration.token.ConfirmationToken;
-import ethniconnect_backend.registration.token.ConfirmationTokenService;
+import ethniconnect_backend.ChefSignup.token.ConfirmationToken;
+import ethniconnect_backend.ChefSignup.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,12 +15,12 @@ import java.util.UUID;
 @Transactional
 @Service
 @AllArgsConstructor
-public class AppUserService implements UserDetailsService {
+public class UserCredentialsService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
 
-    private final AppUserRepository appUserRepository;
+    private final UserCredentialsRepository appUserRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
 

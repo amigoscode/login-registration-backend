@@ -1,4 +1,4 @@
-package ethniconnect_backend.appuser;
+package ethniconnect_backend.UserCredentials;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

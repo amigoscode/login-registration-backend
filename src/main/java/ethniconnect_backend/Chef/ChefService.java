@@ -1,7 +1,7 @@
-package ethniconnect_backend.Chefprofile;
+package ethniconnect_backend.Chef;
 
-import ethniconnect_backend.appuser.AppUserRepository;
-import ethniconnect_backend.appuser.UserCredentials;
+import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
+import ethniconnect_backend.UserCredentials.UserCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ChefProfileService {
+public class ChefService {
     @Autowired
-    private ChefProfileRepository chefProfileRepository;
+    private ChefRepository chefProfileRepository;
     @Autowired
-    private AppUserRepository appUserRepository;
+    private UserCredentialsRepository appUserRepository;
 
     public Chef saveChef(Chef chef) throws Exception{
         Optional<UserCredentials> userData =appUserRepository.findByEmail(chef.getChef_emailid());

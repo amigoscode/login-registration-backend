@@ -1,4 +1,4 @@
-package ethniconnect_backend.appuser;
+package ethniconnect_backend.UserCredentials;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
-public interface AppUserRepository
+public interface UserCredentialsRepository
         extends JpaRepository<UserCredentials, Long> {
 
     Optional<UserCredentials> findByEmail(String email);

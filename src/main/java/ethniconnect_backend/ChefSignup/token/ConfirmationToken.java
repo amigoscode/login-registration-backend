@@ -1,6 +1,6 @@
-package ethniconnect_backend.registration.token;
+package ethniconnect_backend.ChefSignup.token;
 
-import ethniconnect_backend.appuser.UserCredentials;
+import ethniconnect_backend.UserCredentials.UserCredentials;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

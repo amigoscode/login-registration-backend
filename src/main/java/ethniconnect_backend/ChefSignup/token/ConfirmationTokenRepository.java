@@ -1,4 +1,4 @@
-package ethniconnect_backend.registration.token;
+package ethniconnect_backend.ChefSignup.token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

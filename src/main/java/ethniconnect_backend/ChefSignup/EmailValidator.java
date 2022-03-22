@@ -1,4 +1,4 @@
-package ethniconnect_backend.registration;
+package ethniconnect_backend.ChefSignup;
 
 import org.springframework.stereotype.Service;
 

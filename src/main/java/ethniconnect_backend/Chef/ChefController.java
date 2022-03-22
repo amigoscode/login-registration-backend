@@ -1,12 +1,12 @@
-package ethniconnect_backend.Chefprofile;
+package ethniconnect_backend.Chef;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class ChefProfileController {
+public class ChefController {
     @Autowired
-    private ChefProfileService chefProfileService;
+    private ChefService chefProfileService;
 
     @PostMapping("/chef")
     public Chef addChef(@RequestBody Chef chef) throws Exception

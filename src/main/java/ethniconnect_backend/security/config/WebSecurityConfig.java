@@ -1,6 +1,6 @@
 package ethniconnect_backend.security.config;
 
-import ethniconnect_backend.appuser.AppUserService;
+import ethniconnect_backend.UserCredentials.UserCredentialsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AppUserService appUserService;
+    private final UserCredentialsService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override

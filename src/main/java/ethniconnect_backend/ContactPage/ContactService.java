@@ -1,6 +1,5 @@
 package ethniconnect_backend.ContactPage;
 
-import ethniconnect_backend.Chefprofile.Chef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
