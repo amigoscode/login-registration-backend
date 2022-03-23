@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ChefSignupService {
 
-    private final UserCredentialsService appUserService;
+    private final UserCredentialsService userCredentialsService;
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
@@ -31,7 +31,7 @@ public class ChefSignupService {
             throw new IllegalStateException("email not valid");
         }
 
-        String token = appUserService.signUpUser(
+        String token = userCredentialsService.signUpUser(
                 new UserCredentials(
                         request.getEmail(),
                         request.getPassword(),
@@ -44,7 +44,7 @@ public class ChefSignupService {
         String link = "http://localhost:5000/api/v1/registration/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
-                emailService.buildEmail(request.getFirstName(), link));
+                emailService.buildEmail("user", link));
 
         return token;
     }
@@ -67,7 +67,7 @@ public class ChefSignupService {
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        appUserService.enableAppUser(
+        userCredentialsService.enableAppUser(
                 confirmationToken.getAppUser().getEmail());
         return "confirmed";
     }

@@ -21,15 +21,16 @@ public class UserCredentials implements UserDetails {
 
 
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "chef_sequence",
+            sequenceName = "chef_sequence",
             allocationSize = 1
     )
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "chef_sequence"
     )
+
     private Long id;
     private String email;
     private String password;
