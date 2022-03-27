@@ -1,4 +1,4 @@
-package ethniconnect_backend.Customer;
+package ethniconnect_backend.CustomerDetails;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

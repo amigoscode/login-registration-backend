@@ -1,4 +1,4 @@
-package ethniconnect_backend.Customer;
+package ethniconnect_backend.CustomerDetails;
 
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
 import ethniconnect_backend.UserCredentials.UserCredentials;

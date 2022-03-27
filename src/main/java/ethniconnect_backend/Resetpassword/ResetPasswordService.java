@@ -1,4 +1,4 @@
-package ethniconnect_backend.resetpassword;
+package ethniconnect_backend.Resetpassword;
 
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
 import ethniconnect_backend.UserCredentials.UserCredentialsService;
@@ -8,6 +8,7 @@ import ethniconnect_backend.email.EmailService;
 import ethniconnect_backend.ChefSignup.token.ConfirmationToken;
 import ethniconnect_backend.ChefSignup.token.ConfirmationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +18,9 @@ import java.time.LocalDateTime;
 public class ResetPasswordService {
 
     @Autowired
-    UserCredentialsService appUserService;
+    UserCredentialsService userCredentialsService;
     @Autowired
-    UserCredentialsRepository appUserRepository;
+    UserCredentialsRepository userCredentialsRepository;
     @Autowired
       EmailSender emailSender;
       @Autowired
@@ -28,11 +29,11 @@ public class ResetPasswordService {
      ConfirmationTokenService confirmationTokenService;
 
     public void resetPassword(ResetPasswordRequest resetPasswordRequest) {
-        UserCredentials userCredentials = appUserRepository.findByEmail(resetPasswordRequest.getEmailId()).get();
+        UserCredentials userCredentials = userCredentialsRepository.findByEmail(resetPasswordRequest.getEmailId()).get();
 
-        if(appUserService.isEmailIdExist(resetPasswordRequest.getEmailId()))
+        if(userCredentialsService.isEmailIdExist(resetPasswordRequest.getEmailId()))
         {
-            String token =appUserService.getToken(userCredentials);
+            String token = userCredentialsService.getToken(userCredentials);
             String link = "http://localhost:5000/api/v1/resetpassword/confirm?token=" + token;
             emailSender.send(
                     resetPasswordRequest.getEmailId(),
@@ -61,5 +62,13 @@ public class ResetPasswordService {
         confirmationTokenService.setConfirmedAt(token);
 
         return confirmationToken.getAppUser().getEmail();
+    }
+    public void updatePassword(UpdatePassword updatePassword) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(updatePassword.getNewPwd());
+        UserCredentials userCredentials = userCredentialsRepository.findByEmail(updatePassword.getEmailId()).get();
+        userCredentials.setPassword(encodedPassword);
+        userCredentials.setResetpasswordtoken(null);
+        userCredentialsRepository.save(userCredentials);
     }
 }

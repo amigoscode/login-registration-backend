@@ -1,4 +1,4 @@
-package ethniconnect_backend.Chef;
+package ethniconnect_backend.ChefDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

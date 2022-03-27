@@ -1,4 +1,4 @@
-package ethniconnect_backend.Chef;
+package ethniconnect_backend.ChefDetails;
 
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
 import ethniconnect_backend.UserCredentials.UserCredentials;
@@ -12,41 +12,41 @@ import java.util.Optional;
 @Service
 public class ChefService {
     @Autowired
-    private ChefRepository chefProfileRepository;
+    private ChefRepository chefRepository;
     @Autowired
-    private UserCredentialsRepository appUserRepository;
+    private UserCredentialsRepository userCredentialsRepository;
 
     public Chef saveChef(Chef chef) throws Exception{
-        Optional<UserCredentials> userData =appUserRepository.findByEmail(chef.getChef_emailid());
+        Optional<UserCredentials> userData = userCredentialsRepository.findByEmail(chef.getChef_emailid());
         if(!userData.isPresent())
             throw new Exception("user Id doesn't exist");
         Long loginId = userData.get().getId();
 
         chef.setLogin_id(loginId);
-        return chefProfileRepository.save(chef);
+        return chefRepository.save(chef);
     }
     public List<Chef> saveChefs(List<Chef> chefs){
-        return chefProfileRepository.saveAll(chefs);
+        return chefRepository.saveAll(chefs);
     }
 
     public List<Chef> getChefs()
     {
-        return chefProfileRepository.findAll();
+        return chefRepository.findAll();
     }
     public Chef getChefById(int chef_id){
-        return chefProfileRepository.findById(chef_id).orElse(null);
+        return chefRepository.findById(chef_id).orElse(null);
     }
     /*public Chef getChefByEmailId(String chef_emailid){
         return chefProfileRepository.findByEmailId(chef_emailid);
     }*/
     public String deleteChef(int chef_id)
     {
-        chefProfileRepository.deleteById(chef_id);
+        chefRepository.deleteById(chef_id);
         return "chef removed !!" + chef_id;
     }
     public Chef updateChef(Chef chef)
     {
-        Chef existingChef=chefProfileRepository.findById(chef.getChef_id()).orElse(null);
+        Chef existingChef= chefRepository.findById(chef.getChef_id()).orElse(null);
         existingChef.setChef_fname(chef.getChef_fname());
         existingChef.setChef_lname(chef.getChef_lname());
         existingChef.setChef_phone(chef.getChef_phone());
@@ -61,7 +61,7 @@ public class ChefService {
         existingChef.setChef_zip(chef.getChef_zip());
         existingChef.setChef_city(chef.getChef_city());
         existingChef.setChef_experience(chef.getChef_experience());
-        return chefProfileRepository.save(existingChef);
+        return chefRepository.save(existingChef);
 
     }
 }

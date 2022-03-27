@@ -1,4 +1,4 @@
-package ethniconnect_backend.Customer;
+package ethniconnect_backend.CustomerDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package ethniconnect_backend.resetpassword;
+package ethniconnect_backend.Resetpassword;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

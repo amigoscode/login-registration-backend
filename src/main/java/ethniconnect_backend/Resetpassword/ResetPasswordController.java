@@ -1,5 +1,6 @@
-package ethniconnect_backend.resetpassword;
+package ethniconnect_backend.Resetpassword;
 
+import ethniconnect_backend.UserCredentials.UserCredentials;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,11 @@ public class ResetPasswordController {
         return redirectView;
     }
 
+    @PutMapping(path="updatepassword")
+    public String updatepassword(@RequestBody UpdatePassword updatePassword)
+    {
+         resetPasswordService.updatePassword(updatePassword);
+         return "Updated Password";
+    }
 
 }
