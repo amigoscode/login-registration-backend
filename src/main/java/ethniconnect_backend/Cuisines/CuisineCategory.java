@@ -25,4 +25,5 @@ public class CuisineCategory {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cuisineCategory")
     private List<ChefMenu> menus;
+
 }

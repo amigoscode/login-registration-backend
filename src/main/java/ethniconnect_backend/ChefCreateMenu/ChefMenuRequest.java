@@ -20,6 +20,7 @@ public class ChefMenuRequest {
     @Lob
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
     private byte[] menu_item_image;
+    private String item_name;
     private int menu_item_price;
     private String item_ingredients;
     private String item_intresting_facts;

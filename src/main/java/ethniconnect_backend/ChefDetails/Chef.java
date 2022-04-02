@@ -1,19 +1,23 @@
 package ethniconnect_backend.ChefDetails;
 
+import com.sun.mail.iap.ByteArray;
+import ethniconnect_backend.ChefCreateMenu.ChefMenu;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.var;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "chef")
+        //(uniqueConstraints={@UniqueConstraint(columnNames = {"chef_emailid"})})
+
+
 public class Chef {
     @Id
     @GeneratedValue
@@ -32,6 +36,17 @@ public class Chef {
     private int chef_experience;
     private String chef_fblink;
     private String chef_linkdin;
+    /*@Lob
+    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
+    private byte[] chef_image;*/
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String chef_image;
+
+
+
+   /* @OneToMany (targetEntity = ChefMenu.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cm_fk" , referencedColumnName = "login_id")
+    private List<ChefMenu> chefmenus;*/
 
 }

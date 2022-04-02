@@ -3,6 +3,8 @@ package ethniconnect_backend.CustomerDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 @RestController
 public class CustomerController {
 
@@ -10,12 +12,29 @@ public class CustomerController {
    private CustomerService customerService;
 
     @PostMapping("/customer")
-    public Customer addCustomer(@RequestBody Customer customer) throws Exception
+
+    public String addcustomer(@RequestParam("file") MultipartFile file,
+                          @RequestParam("cust_fname") String fname,
+                          @RequestParam("cust_lname") String lname,
+                          @RequestParam("cust_emailid") String emailid,
+                          @RequestParam("cust_phone") String phone,
+                          @RequestParam("cust_street") String street,
+                          @RequestParam("cust_city") String city,
+                          @RequestParam("cust_state") String state,
+                          @RequestParam("cust_zip") String zip,
+                          @RequestParam("chef_ethnicity") String ethnicity
+                          ) throws Exception {
+        customerService.saveCustomer(file, fname, lname,emailid,phone,street,
+                city,state,zip,ethnicity);
+        return "customer details added";
+    }
+
+   /* public Customer addCustomer(@RequestBody Customer customer) throws Exception
     {
 
         return customerService.saveCustomer(customer);
     }
-
+*/
 
     @GetMapping({"/custById/{id}"})
     public Customer findCustById(@PathVariable int id)

@@ -1,5 +1,5 @@
 server:
-  port: 5000
+  port: 8080
   error:
     include-message: always
     include-binding-errors: always
@@ -12,12 +12,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: bharani16
     initialization-mode: ALWAYS
-    url: jdbc:mysql://localhost:3306/registration?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/ethniconnect?serverTimezone=UTC
     #url: jdbc:mysql://ethniconnectdb.cs03gfixeofo.us-east-2.rds.amazonaws.com:3306/ethniconnect
     username: root
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -53,3 +53,8 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
+
+  servlet :
+    multipart :
+      max-file-size: 15MB
+      max-request-size: 15MB

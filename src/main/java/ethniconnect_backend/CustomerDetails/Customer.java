@@ -1,13 +1,14 @@
 package ethniconnect_backend.CustomerDetails;
 
+import ethniconnect_backend.ChefCreateMenu.ChefMenu;
+import ethniconnect_backend.Order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -28,6 +29,14 @@ public class Customer {
     private String cust_state;
     private String cust_zip;
     private String cust_ethnicity;
+
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String cust_image;
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    private List<Order> orders;*/
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Order> orders;
 
 }
