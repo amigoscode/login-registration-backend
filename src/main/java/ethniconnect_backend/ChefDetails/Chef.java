@@ -1,14 +1,10 @@
 package ethniconnect_backend.ChefDetails;
 
-import com.sun.mail.iap.ByteArray;
-import ethniconnect_backend.ChefCreateMenu.ChefMenu;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.var;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor

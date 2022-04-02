@@ -25,8 +25,8 @@ public class ChefMenu {
     private MenuCategories menucategories;
     //private int cuisine_id;
     @Lob
-    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
-    private byte[] menu_item_image;
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String menu_item_image;
     private String item_name;
     private int menu_item_price;
     private String item_ingredients;
