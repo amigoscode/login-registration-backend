@@ -32,19 +32,6 @@ public class ChefMenuController {
                 item_name,menu_item_price,item_ingredients,item_intresting_facts,week);
         return "chef details added";
     }
-   /* public ResponseEntity<String> addChefMenu(@RequestBody ChefMenuRequest chefMenuRequest) throws Exception
-    {
-
-        //chefMenuService.saveChefMenu(ch);
-        chefMenuService.saveChefMenu(chefMenuRequest);
-
-        return new ResponseEntity<>("menu item saved successfully", HttpStatus.OK);
-    }*/
-   /* @PostMapping("/chefs")
-    public List<Chef> addChefs(@RequestBody List<Chef> chefs)
-    {
-        return chefProfileService.saveChefs(chefs);
-    }*/
 
     @GetMapping({"/chefmenuById/{id}"})
     public ChefMenuGETResponse findChefMenuById(@PathVariable int id)

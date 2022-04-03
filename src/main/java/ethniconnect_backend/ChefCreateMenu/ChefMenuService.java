@@ -40,12 +40,6 @@ public class ChefMenuService  {
         if(cuisineCategory == null)
             throw new Exception("cuisine category doesn't exist");
 
-
-
-
-        /*Long loginId = userData.get().getId();
-
-        chefMenu.setLogin_id(loginId);*/
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         if(fileName.contains(".."))
         {
@@ -68,29 +62,7 @@ public class ChefMenuService  {
 
         chefMenuRepository.save(chefMenu);
     }
-    /*public ChefMenu saveChefMenu(ChefMenuRequest chefMenuRequest) throws Exception{
 
-        Optional<UserCredentials> userData = userCredentialsRepository.findById(chefMenuRequest.getLogin_id());
-        if(!userData.isPresent())
-            throw new Exception("user Id doesn't exist");
-        CuisineCategory cuisineCategory = cuisineCategoriesRepository.findById(chefMenuRequest.getCuisine_id()).get();
-       // Long loginId = userData.get().getId();
-        if(cuisineCategory == null)
-            throw new Exception("cuisine category doesn't exist");
-        ChefMenu chefMenu = new ChefMenu();
-        chefMenu.setLogin_id(chefMenuRequest.getLogin_id());
-        chefMenu.setMenucategories(chefMenuRequest.getMenucategories());
-        chefMenu.setMenu_item_image(chefMenuRequest.getMenu_item_image());
-        chefMenu.setMenu_item_price(chefMenuRequest.getMenu_item_price());
-        chefMenu.setItem_name(chefMenuRequest.getItem_name());
-        chefMenu.setItem_intresting_facts(chefMenuRequest.getItem_intresting_facts());
-        chefMenu.setItem_ingredients(chefMenuRequest.getItem_ingredients());
-        chefMenu.setCuisineCategory(cuisineCategory);
-        chefMenu.setWeek(chefMenuRequest.getWeek());
-
-        chefMenuRequest.setLogin_id(chefMenuRequest.getLogin_id());
-        return chefMenuRepository.save(chefMenu);
-    }*/
     public List<ChefMenu> saveChefMenus(List<ChefMenu> chefMenus){
         return chefMenuRepository.saveAll(chefMenus);
     }
