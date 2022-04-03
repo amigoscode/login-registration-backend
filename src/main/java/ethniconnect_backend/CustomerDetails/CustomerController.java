@@ -21,11 +21,10 @@ public class CustomerController {
                           @RequestParam("cust_street") String street,
                           @RequestParam("cust_city") String city,
                           @RequestParam("cust_state") String state,
-                          @RequestParam("cust_zip") String zip,
-                          @RequestParam("chef_ethnicity") String ethnicity
+                          @RequestParam("cust_zip") String zip
                           ) throws Exception {
         customerService.saveCustomer(file, fname, lname,emailid,phone,street,
-                city,state,zip,ethnicity);
+                city,state,zip);
         return "customer details added";
     }
 

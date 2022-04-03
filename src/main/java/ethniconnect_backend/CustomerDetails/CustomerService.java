@@ -22,7 +22,7 @@ public class CustomerService {
 
     public void saveCustomer(MultipartFile file, String fname, String lname, String emailid,
                          String phone, String street, String city,
-                         String state, String zip, String ethnicity) throws Exception
+                         String state, String zip) throws Exception
     {
         Customer customer =new Customer();
         Optional<UserCredentials> userData = userCredentialsRepository.findByEmail(emailid);
@@ -51,7 +51,7 @@ public class CustomerService {
         customer.setCust_state(state);
         customer.setCust_city(city);
         customer.setCust_zip(zip);
-        customer.setCust_ethnicity(ethnicity);
+
         customerRepository.save(customer);
     }
 

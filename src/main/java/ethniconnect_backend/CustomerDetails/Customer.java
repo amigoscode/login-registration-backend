@@ -28,7 +28,7 @@ public class Customer {
     private String cust_city;
     private String cust_state;
     private String cust_zip;
-    private String cust_ethnicity;
+
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
