@@ -45,7 +45,7 @@ import java.time.LocalDateTime;
                 String link = "http://localhost:5000/api/v1/registration/confirm?token=" + token;
                 emailSender.send(
                         request.getEmail(),
-                        emailService.buildEmail(request.getFirstName(), link));
+                        emailService.buildEmail("user", link));
 
                 return token;
             }

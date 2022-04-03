@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface ChefMenuRepository extends JpaRepository<ChefMenu,Integer> {
 
-    Optional<ChefMenu> findById(Integer id);
+    //Optional<ChefMenu> findById(Integer id);
 }

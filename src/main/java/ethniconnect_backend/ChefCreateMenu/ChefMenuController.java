@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class ChefMenuController {
@@ -16,22 +17,37 @@ public class ChefMenuController {
     private ChefMenuRepository chefMenuRepository;
 
     @PostMapping("/chefmenu")
-    public ResponseEntity<String> addChefMenu(@RequestBody ChefMenuRequest chefMenuRequest) throws Exception
+
+    public String addChefMenu(@RequestParam("file") MultipartFile file,
+                          @RequestParam("login_id") long login_id,
+                          @RequestParam("menucategories") MenuCategories menuCategories,
+                          @RequestParam("cuisine_id") int cuisine_id,
+                              @RequestParam("item_name") String item_name,
+
+                          @RequestParam("menu_item_price") double menu_item_price,
+                          @RequestParam("item_ingredients") String item_ingredients,
+                          @RequestParam("item_intresting_facts") String item_intresting_facts,
+                          @RequestParam("week") Week week) throws Exception {
+        chefMenuService.saveChefMenu(file, login_id, menuCategories,cuisine_id,
+                item_name,menu_item_price,item_ingredients,item_intresting_facts,week);
+        return "chef details added";
+    }
+   /* public ResponseEntity<String> addChefMenu(@RequestBody ChefMenuRequest chefMenuRequest) throws Exception
     {
 
         //chefMenuService.saveChefMenu(ch);
         chefMenuService.saveChefMenu(chefMenuRequest);
 
         return new ResponseEntity<>("menu item saved successfully", HttpStatus.OK);
-    }
+    }*/
    /* @PostMapping("/chefs")
     public List<Chef> addChefs(@RequestBody List<Chef> chefs)
     {
         return chefProfileService.saveChefs(chefs);
     }*/
 
-    @GetMapping({"/chefmenuyId/{id}"})
-    public ChefMenu findChefMenuById(@PathVariable int id)
+    @GetMapping({"/chefmenuById/{id}"})
+    public ChefMenuGETResponse findChefMenuById(@PathVariable int id)
     {
         return chefMenuService.getChefMenuById(id);
     }

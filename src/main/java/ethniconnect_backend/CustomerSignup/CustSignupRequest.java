@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class CustSignupRequest {
 
-    private final String firstName;
+    //private final String firstName;
     /* private final String lastName;*/
     private final String email;
     private final String password;
