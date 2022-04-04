@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
             private final EmailSender emailSender;
             private EmailService emailService;
 
-            public String register(CustSignupRequest request) {
+            public void register(CustSignupRequest request) {
                 boolean isValidEmail = emailValidator.
                         test(request.getEmail());
 
@@ -47,7 +47,7 @@ import java.time.LocalDateTime;
                         request.getEmail(),
                         emailService.buildEmail("user", link));
 
-                return token;
+                //return token;
             }
 
             @Transactional

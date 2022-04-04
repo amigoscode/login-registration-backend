@@ -19,6 +19,7 @@ public class Contact {
     @GeneratedValue
     private int id;
     private String name;
+    private String emailid;
     private String message;
 
 }
