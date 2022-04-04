@@ -2,6 +2,7 @@ package ethniconnect_backend.ChefSignup;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin()
 @RestController
@@ -12,8 +13,10 @@ public class ChefSignupController {
     private final ChefSignupService registrationService;
 
     @PostMapping("api/v1/registration")
-    public void register(@RequestBody ChefSignupRequest request) {
-         registrationService.register(request);
+    public void register( @RequestParam("email") String  email,
+                          @RequestParam("password") String password)
+    {
+         registrationService.register(email,password);
     }
 
     @GetMapping("api/v1/registration/confirm")

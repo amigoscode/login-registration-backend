@@ -23,9 +23,9 @@ public class ChefSignupService {
     private final EmailSender emailSender;
     private EmailService emailService;
 
-    public void register(ChefSignupRequest request) {
+    public void register(String   email, String password) {
         boolean isValidEmail = emailValidator.
-                test(request.getEmail());
+                test(email);
 
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
@@ -33,8 +33,8 @@ public class ChefSignupService {
 
         String token = userCredentialsService.signUpUser(
                 new UserCredentials(
-                        request.getEmail(),
-                        request.getPassword(),
+                        email,
+                        password,
                         UserRole.BUSINESS
 
                 )
@@ -43,7 +43,7 @@ public class ChefSignupService {
         /*String link = "www.google.com";*/
         String link = "http://localhost:5000/api/v1/registration/confirm?token=" + token;
         emailSender.send(
-                request.getEmail(),
+               email,
                 emailService.buildEmail("user", link));
 
         //return token;
