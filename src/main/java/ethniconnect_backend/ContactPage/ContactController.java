@@ -11,10 +11,11 @@ public class ContactController {
     private ContactService contactService;
 
     @PostMapping("/ContactRequest")
-    public Contact addcontactrequest(@RequestBody Contact contact)
+    public String addcontactrequest(@RequestBody Contact contact)
     {
 
-        return contactService.saveContact(contact);
+        contactService.saveContactRequest(contact);
+        return "request added";
     }
 
     @GetMapping({"/ContactRequests"})
