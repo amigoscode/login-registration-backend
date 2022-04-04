@@ -23,7 +23,7 @@ public class ChefSignupService {
     private final EmailSender emailSender;
     private EmailService emailService;
 
-    public String register(ChefSignupRequest request) {
+    public void register(ChefSignupRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
 
@@ -46,7 +46,7 @@ public class ChefSignupService {
                 request.getEmail(),
                 emailService.buildEmail("user", link));
 
-        return token;
+        //return token;
     }
 
     @Transactional
