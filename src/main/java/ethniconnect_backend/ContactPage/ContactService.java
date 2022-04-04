@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.transform.sax.SAXTransformerFactory;
 import java.util.List;
 
 @Service
@@ -33,9 +34,9 @@ public class ContactService {
     }*/
 
 
-    public void saveContactRequest(Contact contact) {
+    public void saveContactRequest(String email, String name, String message) {
         boolean isValidEmail = emailValidator.
-                test(contact.getEmailid());
+                test(email);
 
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
@@ -43,10 +44,14 @@ public class ContactService {
 
 
         /*String link = "www.google.com";*/
-
+        Contact contact = new Contact();
+        contact.setEmailid(email);
+        contact.setMessage(message);
+        contact.setName(name);
+        contactRepository.save(contact);
         emailSender.send(
                 "ethniconnect@gmail.com",
-                emailService.buildContactEmail(contact.getMessage(),contact.getEmailid()));
+                emailService.buildContactEmail(message,email));
         contactRepository.save(contact);
 
         //return token;
