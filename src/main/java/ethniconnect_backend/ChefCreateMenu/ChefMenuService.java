@@ -110,6 +110,12 @@ public class ChefMenuService  {
         return chefMenuRepository.save(existingChefMenu);
 
     }
+    public ChefMenu getMenuItemById(int menu_id) throws Exception {
+        Optional<ChefMenu> optionalChefMenu = chefMenuRepository.findById(menu_id);
+        if (!optionalChefMenu.isPresent())
+            throw new Exception("Product id is invalid " + menu_id);
+        return optionalChefMenu.get();
+    }
 
 
 }

@@ -20,7 +20,7 @@ public class OrderController {
     {
 
         //chefMenuService.saveChefMenu(ch);
-        orderService.saveOrder(orderRequest);
+        //orderService.saveOrder(orderRequest);
 
         return new ResponseEntity<>("order is places successfully", HttpStatus.OK);
     }
@@ -29,18 +29,18 @@ public class OrderController {
     {
         return chefProfileService.saveChefs(chefs);
     }*/
-
-    @GetMapping({"/getOrderById/{id}"})
-    public Order findOrderById(@PathVariable int id)
-    {
-        return orderService.getOrderById(id);
-    }
-
-    @PutMapping("/updateorder")
-    public Order updateOrder(@RequestBody Order order)
-    {
-        return orderService.updateOrder(order);
-    }
+//
+//    @GetMapping({"/getOrderById/{id}"})
+//    public Order findOrderById(@PathVariable int id)
+//    {
+//        return orderService.getOrderById(id);
+//    }
+//
+//    @PutMapping("/updateorder")
+//    public Order updateOrder(@RequestBody Order order)
+//    {
+//        return orderService.updateOrder(order);
+//    }
 }
 
 

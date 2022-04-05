@@ -24,20 +24,31 @@ import java.util.Set;
 public class Order {
     @Id
     @GeneratedValue
-    private int order_id;
-    private long login_id;
-    private int cust_id;
-    private int menu_id;
+    private int id;
+    //private long login_id;
+    //private int cust_id;
+
     private LocalDate order_date;
-    private LocalDateTime pickup_time;
+    //private LocalDateTime pickup_time;
     private String order_instructions;
     private double order_amount;
+
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name="order_id",referencedColumnName = "id",insertable = false,updatable = false)
+    private List<OrderItem> orderItems;
+
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="login_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Customer customer;
+
+
 
    /* @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "orders")
     private Customer customer;*/
-   @ManyToOne
+   /*@ManyToOne
    @JoinColumn(name="cust_id", insertable = false, updatable = false)
    private Customer customer;
     @ManyToMany
@@ -45,5 +56,7 @@ public class Order {
             name = "order_menu",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "id"))
-    Set<ChefMenu> menu_items;
+    Set<ChefMenu> menu_items;*/
+
+
 }
