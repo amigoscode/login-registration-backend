@@ -1,5 +1,7 @@
 package ethniconnect_backend.ChefDetails;
 
+import ethniconnect_backend.Cuisines.CuisineCategoriesRepository;
+import ethniconnect_backend.Cuisines.CuisineCategory;
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
 import ethniconnect_backend.UserCredentials.UserCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ChefService {
@@ -19,12 +23,14 @@ public class ChefService {
     private ChefRepository chefRepository;
     @Autowired
     private UserCredentialsRepository userCredentialsRepository;
+    @Autowired
+    private CuisineCategoriesRepository cuisineCategoriesRepository;
 
     public void saveChef(MultipartFile file,  String fname,String lname,String emailid,
                          String chef_phone,String chef_street,String chef_city,
                          String chef_state,String chef_zip,String chef_paymode,
                          String chef_description,int chef_experience,String chef_fblink,
-                         String chef_linkdin) throws Exception
+                         String chef_linkdin,int chef_preferred_cuisine) throws Exception
     {
         Chef chef =new Chef();
         Optional<UserCredentials> userData = userCredentialsRepository.findByEmail(emailid);
@@ -61,6 +67,7 @@ public class ChefService {
         chef.setChef_experience(chef_experience);
         chef.setChef_fblink(chef_fblink);
         chef.setChef_linkdin(chef_linkdin);
+        chef.setPrefCuisine(chef_preferred_cuisine);
         chefRepository.save(chef);
     }
 
@@ -111,7 +118,17 @@ public class ChefService {
         return chefRepository.save(existingChef);
 
     }
+    public List<Chef> getChefByCuisineId(String cuisine_id){
 
+        return chefRepository.getChefsByPrefCuisine(Integer.getInteger(cuisine_id));
+    }
+    public List<CuisineCategory> getCuisinesByZipCode(String zipCode){
+        CuisineCategory cuisineCategory= new CuisineCategory();
+        List<Chef> chefs = chefRepository.getChefsByZip(zipCode);
+        Set<Integer> cuisineId =  chefs.stream().map(Chef::getPrefCuisine).distinct().collect(Collectors.toSet());
+        List<CuisineCategory> cuisineCategories = cuisineCategoriesRepository.findAllById(cuisineId);
+        return cuisineCategories;
+    }
 
 
 }

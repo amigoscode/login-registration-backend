@@ -1,9 +1,12 @@
 package ethniconnect_backend.ChefDetails;
 
+import ethniconnect_backend.Cuisines.CuisineCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @CrossOrigin()
 @RestController
@@ -26,10 +29,12 @@ public class ChefController {
                           @RequestParam("chef_description") String chef_description,
                           @RequestParam("chef_experience") int chef_experience,
                           @RequestParam("chef_fblink") String chef_fblink,
-                          @RequestParam("chef_linkdin") String chef_linkdin) throws Exception {
+                          @RequestParam("chef_linkdin") String chef_linkdin,
+                          @RequestParam("chef_linkdin") int chef_preferred_cuisine
+    ) throws Exception {
         chefProfileService.saveChef(file, fname, lname,emailid,chef_phone,chef_street,
                 chef_city,chef_state,chef_zip,chef_paymode,chef_description,
-                chef_experience,chef_fblink,chef_linkdin);
+                chef_experience,chef_fblink,chef_linkdin,chef_preferred_cuisine);
         return "chef details added";
     }
 
@@ -39,7 +44,17 @@ public class ChefController {
         return chefProfileService.saveChef(chef);
     }*/
 
+    @GetMapping({"/chefByCuisineId/{cuisineId}"})
+    public List<Chef> getChefByCuisineId(@PathVariable String cuisineId)
+    {
+        return chefProfileService.getChefByCuisineId(cuisineId);
+    }
 
+    @GetMapping({"/getCuisinesByZipCode/{zipCode}"})
+    public List<CuisineCategory> getCuisinesByZipCode(@PathVariable String zipCode)
+    {
+        return chefProfileService.getCuisinesByZipCode(zipCode);
+    }
    @GetMapping({"/chefById/{id}"})
    public Chef findChefById(@PathVariable int id)
    {

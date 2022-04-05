@@ -32,6 +32,7 @@ public class Chef {
     private int chef_experience;
     private String chef_fblink;
     private String chef_linkdin;
+    private int prefCuisine;
     /*@Lob
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
     private byte[] chef_image;*/
