@@ -24,9 +24,9 @@ import java.time.LocalDateTime;
             private final EmailSender emailSender;
             private EmailService emailService;
 
-            public void register(CustSignupRequest request) {
+            public void register(String   email, String password) {
                 boolean isValidEmail = emailValidator.
-                        test(request.getEmail());
+                        test(email);
 
                 if (!isValidEmail) {
                     throw new IllegalStateException("email not valid");
@@ -34,8 +34,8 @@ import java.time.LocalDateTime;
 
                 String token = appUserService.signUpUser(
                         new UserCredentials(
-                                request.getEmail(),
-                                request.getPassword(),
+                                email,
+                                password,
                                 UserRole.PERSONAL
 
                         )
@@ -44,7 +44,7 @@ import java.time.LocalDateTime;
                 /*String link = "www.google.com";*/
                 String link = "http://localhost:5000/api/v1/registration/confirm?token=" + token;
                 emailSender.send(
-                        request.getEmail(),
+                        email,
                         emailService.buildEmail("user", link));
 
                 //return token;

@@ -16,8 +16,9 @@ public class CustSignupController {
     private final CustSignupService custSignupService;
 
     @PostMapping("api/v1/CustSignup")
-    public void register(@RequestBody CustSignupRequest request) {
-         custSignupService.register(request);
+    public void register(@RequestParam("email") String  email,
+                         @RequestParam("password") String password) {
+         custSignupService.register(email,password);
     }
 
     @GetMapping("api/v1/CustSignup/confirm")
