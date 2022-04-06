@@ -45,5 +45,16 @@ public class ChefMenuController {
         return chefMenuService.updateChefMenu(chefMenu);
     }
 }
+/* @GetMapping({"/chefByCuisineId/{cuisineId}"})
+ public List<Chef> getChefByCuisineId(@PathVariable String cuisineId)
+ {
+     return chefProfileService.getChefByCuisineId(cuisineId);
+ }
+
+ @GetMapping({"/getCuisinesByZipCode/{zipCode}"})
+ public List<CuisineCategory> getCuisinesByZipCode(@PathVariable String zipCode)
+ {
+     return chefProfileService.getCuisinesByZipCode(zipCode);
+ }*/
 
 

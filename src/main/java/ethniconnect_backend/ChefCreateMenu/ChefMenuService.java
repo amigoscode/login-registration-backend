@@ -110,6 +110,17 @@ public class ChefMenuService  {
         return chefMenuRepository.save(existingChefMenu);
 
     }
+/*public List<Chef> getChefByCuisineId(String cuisine_id){
 
+        return chefRepository.getChefsByPrefCuisine(Integer.getInteger(cuisine_id));
+    }
+    public List<CuisineCategory> getCuisinesByZipCode(String zipCode){
+        CuisineCategory cuisineCategory= new CuisineCategory();
+        List<Chef> chefs = chefRepository.getChefsByZip(zipCode);
+        Set<Integer> cuisineId =  chefs.stream().map(Chef::getPrefCuisine).distinct().collect(Collectors.toSet());
+        List<CuisineCategory> cuisineCategories = cuisineCategoriesRepository.findAllById(cuisineId);
+        return cuisineCategories;
+    }
+*/
 
 }
