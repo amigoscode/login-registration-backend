@@ -67,7 +67,7 @@ public class ChefService {
         chef.setChef_experience(chef_experience);
         chef.setChef_fblink(chef_fblink);
         chef.setChef_linkdin(chef_linkdin);
-        chef.setPrefCuisine(chef_preferred_cuisine);
+        
         chefRepository.save(chef);
     }
 
@@ -117,17 +117,6 @@ public class ChefService {
         existingChef.setChef_experience(chef.getChef_experience());
         return chefRepository.save(existingChef);
 
-    }
-    public List<Chef> getChefByCuisineId(String cuisine_id){
-
-        return chefRepository.getChefsByPrefCuisine(Integer.getInteger(cuisine_id));
-    }
-    public List<CuisineCategory> getCuisinesByZipCode(String zipCode){
-        CuisineCategory cuisineCategory= new CuisineCategory();
-        List<Chef> chefs = chefRepository.getChefsByZip(zipCode);
-        Set<Integer> cuisineId =  chefs.stream().map(Chef::getPrefCuisine).distinct().collect(Collectors.toSet());
-        List<CuisineCategory> cuisineCategories = cuisineCategoriesRepository.findAllById(cuisineId);
-        return cuisineCategories;
     }
 
 

@@ -34,14 +34,14 @@ public class Order {
     private double order_amount;
 
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+   /* @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name="order_id",referencedColumnName = "id",insertable = false,updatable = false)
     private List<OrderItem> orderItems;
 
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="login_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Customer customer;
-
+*/
 
 
    /* @OneToOne(fetch = FetchType.LAZY,

@@ -38,8 +38,8 @@ public class ChefMenu {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cuisine_id")
     private CuisineCategory cuisineCategory;
-    @ManyToMany(mappedBy = "menu_items")
-    Set<Order> orders;
+/*    @ManyToMany(mappedBy = "menu_items")
+    Set<Order> orders;*/
 
    /* @OneToOne
     @JoinColumn (name="login_id", insertable = false, updatable = false)

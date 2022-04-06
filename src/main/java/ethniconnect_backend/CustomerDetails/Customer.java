@@ -35,8 +35,8 @@ public class Customer {
     private String cust_image;
     /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<Order> orders;*/
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
+    /*@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Order> orders;
-
+*/
 }

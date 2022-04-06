@@ -44,7 +44,7 @@ public class ChefController {
         return chefProfileService.saveChef(chef);
     }*/
 
-    @GetMapping({"/chefByCuisineId/{cuisineId}"})
+   /* @GetMapping({"/chefByCuisineId/{cuisineId}"})
     public List<Chef> getChefByCuisineId(@PathVariable String cuisineId)
     {
         return chefProfileService.getChefByCuisineId(cuisineId);
@@ -54,7 +54,7 @@ public class ChefController {
     public List<CuisineCategory> getCuisinesByZipCode(@PathVariable String zipCode)
     {
         return chefProfileService.getCuisinesByZipCode(zipCode);
-    }
+    }*/
    @GetMapping({"/chefById/{id}"})
    public Chef findChefById(@PathVariable int id)
    {

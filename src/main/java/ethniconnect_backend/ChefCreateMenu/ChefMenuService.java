@@ -1,5 +1,7 @@
 package ethniconnect_backend.ChefCreateMenu;
 
+import ethniconnect_backend.ChefDetails.Chef;
+import ethniconnect_backend.ChefDetails.ChefRepository;
 import ethniconnect_backend.Cuisines.CuisineCategoriesRepository;
 import ethniconnect_backend.Cuisines.CuisineCategory;
 import ethniconnect_backend.UserCredentials.UserCredentials;
@@ -13,6 +15,9 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class ChefMenuService  {
 
@@ -23,6 +28,8 @@ public class ChefMenuService  {
 
     @Autowired
     CuisineCategoriesRepository cuisineCategoriesRepository;
+    @Autowired
+    ChefRepository chefRepository;
 
 
 
@@ -116,6 +123,17 @@ public class ChefMenuService  {
             throw new Exception("Product id is invalid " + menu_id);
         return optionalChefMenu.get();
     }
+    /*public List<Chef> getChefByCuisineId(String cuisine_id){
 
+        return chefRepository.getChefsByPrefCuisine(Integer.getInteger(cuisine_id));
+    }
+    public List<CuisineCategory> getCuisinesByZipCode(String zipCode){
+        CuisineCategory cuisineCategory= new CuisineCategory();
+        List<Chef> chefs = chefRepository.getChefsByZip(zipCode);
+        Set<Integer> cuisineId =  chefs.stream().map(Chef::getPrefCuisine).distinct().collect(Collectors.toSet());
+        List<CuisineCategory> cuisineCategories = cuisineCategoriesRepository.findAllById(cuisineId);
+        return cuisineCategories;
+    }
+*/
 
 }
