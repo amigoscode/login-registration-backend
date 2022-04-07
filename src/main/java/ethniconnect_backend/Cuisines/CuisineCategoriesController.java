@@ -32,12 +32,6 @@ public class CuisineCategoriesController {
         return cuisinesCategoriesService.getCuisineCategoryById(id);
     }
 
-    @GetMapping({"/cuisineCategoryByZip/{zip}"})
-    public List<CuisineCategory>cuisineCategoryByZip(@PathVariable int zip)
-    {
-        return cuisinesCategoriesService.cuisineCategoryByZip(zip);
-    }
-
 }
 
 

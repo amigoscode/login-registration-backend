@@ -19,7 +19,6 @@ public class Zip {
     @Id
     private int id;
     private int zipCode;
-    @OneToMany
-            @JoinColumn (name= "zip_id")
-    Set<CuisineCategory> cuisineCategory;
+   @OneToMany
+   Set<CuisineCategory> cuisineCategory;
 }

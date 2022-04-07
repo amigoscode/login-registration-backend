@@ -12,4 +12,8 @@ public class ZipService {
     public List<Zip> getAllZip(){
        return zipRepository.findAll();
     }
+
+    public Zip getZipByZipCode(int zipCode){
+        return zipRepository.getZipByZipCode(zipCode);
+    }
 }

@@ -23,8 +23,7 @@ public class CuisineCategory {
     private int id;
     private String cuisine_name;
     private String cuisine_image;
-    @ManyToOne
-    private Zip zip;
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cuisineCategory")
     private List<ChefMenu> menus;
