@@ -1,0 +1,123 @@
+package ethniconnect_backend.ChefDetails;
+
+import ethniconnect_backend.Cuisines.CuisineCategoriesRepository;
+import ethniconnect_backend.Cuisines.CuisineCategory;
+import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
+import ethniconnect_backend.UserCredentials.UserCredentials;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@Service
+public class ChefService {
+    @Autowired
+    private ChefRepository chefRepository;
+    @Autowired
+    private UserCredentialsRepository userCredentialsRepository;
+    @Autowired
+    private CuisineCategoriesRepository cuisineCategoriesRepository;
+
+    public void saveChef(MultipartFile file,  String fname,String lname,String emailid,
+                         String chef_phone,String chef_street,String chef_city,
+                         String chef_state,String chef_zip,String chef_paymode,
+                         String chef_description,int chef_experience,String chef_fblink,
+                         String chef_linkdin,int chef_preferred_cuisine) throws Exception
+    {
+        Chef chef =new Chef();
+        Optional<UserCredentials> userData = userCredentialsRepository.findByEmail(emailid);
+        if(!userData.isPresent())
+            throw new Exception("user Id doesn't exist");
+
+
+
+
+        Long loginId = userData.get().getId();
+
+        chef.setLogin_id(loginId);
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if(fileName.contains(".."))
+        {
+            System.out.println("not a a valid file");
+        }
+        try {
+            chef.setChef_image(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        chef.setChef_fname(fname);
+
+        chef.setChef_lname(lname);
+        chef.setChef_emailid(emailid);
+        chef.setChef_city(chef_city);
+        chef.setChef_phone(chef_phone);
+        chef.setChef_street(chef_street);
+        chef.setChef_state(chef_state);
+        chef.setChef_zip(chef_zip);
+        chef.setChef_paymode(chef_paymode);
+        chef.setChef_description(chef_description);
+        chef.setChef_experience(chef_experience);
+        chef.setChef_fblink(chef_fblink);
+        chef.setChef_linkdin(chef_linkdin);
+        
+        chefRepository.save(chef);
+    }
+
+    /*public Chef saveChef(Chef chef) throws Exception{
+        Optional<UserCredentials> userData = userCredentialsRepository.findByEmail(chef.getChef_emailid());
+        if(!userData.isPresent())
+            throw new Exception("user Id doesn't exist");
+        Long loginId = userData.get().getId();
+
+        chef.setLogin_id(loginId);
+
+        return chefRepository.save(chef);
+    }*/
+    public List<Chef> saveChefs(List<Chef> chefs){
+        return chefRepository.saveAll(chefs);
+    }
+
+    public List<Chef> getChefs()
+    {
+        return chefRepository.findAll();
+    }
+    public Chef getChefById(int chef_id){
+        return chefRepository.findById(chef_id).orElse(null);
+    }
+
+    public String deleteChef(int chef_id)
+    {
+        chefRepository.deleteById(chef_id);
+        return "chef removed !!" + chef_id;
+    }
+    public Chef updateChef(Chef chef)
+    {
+        Chef existingChef= chefRepository.findById(chef.getChef_id()).orElse(null);
+        existingChef.setChef_fname(chef.getChef_fname());
+        existingChef.setChef_lname(chef.getChef_lname());
+        existingChef.setChef_phone(chef.getChef_phone());
+        existingChef.setChef_city(chef.getChef_city());
+        existingChef.setChef_description(chef.getChef_description());
+        existingChef.setChef_fblink(chef.getChef_fblink());
+        existingChef.setChef_linkdin(chef.getChef_linkdin());
+        existingChef.setChef_image(chef.getChef_image());
+        existingChef.setChef_paymode(chef.getChef_paymode());
+        existingChef.setChef_state(chef.getChef_state());
+        existingChef.setChef_street(chef.getChef_street());
+        existingChef.setChef_zip(chef.getChef_zip());
+        existingChef.setChef_city(chef.getChef_city());
+        existingChef.setChef_experience(chef.getChef_experience());
+        return chefRepository.save(existingChef);
+
+    }
+
+
+}
