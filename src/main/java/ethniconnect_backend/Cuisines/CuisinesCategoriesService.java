@@ -22,6 +22,10 @@ public class CuisinesCategoriesService {
     {
         return (CuisineCategory) cuisineCategoriesRepository.findById(id).orElse(null);
     }
+    public List<CuisineCategory> cuisineCategoryByZip(int zip)
+    {
+        return cuisineCategoriesRepository.getCuisineCategoryByZip_ZipCode(zip);
+    }
 
 }
 
