@@ -119,12 +119,12 @@ public class ChefMenuService  {
 //
 //        return chefRepository.getChefsByPrefCuisine(Integer.getInteger(cuisine_id));
 //    }
-    public List<CuisineCategory> getCuisineCategoriesByZipCode(String zipCode){
+   /* public List<CuisineCategory> getCuisineCategoriesByZipCode(String zipCode){
         CuisineCategory cuisineCategory= new CuisineCategory();
         List<Chef> chefs = chefRepository.getChefsByZip(zipCode);
         Set<Integer> categorieId =  chefs.stream().map((chef)->chefMenuRepository.findByLogin_id(chef.getLogin_id())).map((chefMenu)->chefMenu.getCuisineCategory()).map((cuisineCategory)->cuisineCategory.getCuisine_name()).distinct().collect(Collectors.toSet());
         List<CuisineCategory> cuisineCategories = cuisineCategoriesRepository.findAllById(cuisineId);
         return cuisineCategories;
     }
-
+*/
 }
