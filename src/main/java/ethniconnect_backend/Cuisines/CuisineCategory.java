@@ -16,10 +16,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "cuisinecategory")
+
 public class CuisineCategory {
     @Id
     @GeneratedValue
     private int id;
+    @Column(unique = true)
     private String cuisine_name;
     private String cuisine_image;
 

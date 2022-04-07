@@ -93,21 +93,21 @@ public class ChefService {
     }
     public Chef updateChef(Chef chef)
     {
-        Chef existingChef= chefRepository.findById(chef.getChef_id()).orElse(null);
-        existingChef.setChef_fname(chef.getChef_fname());
-        existingChef.setChef_lname(chef.getChef_lname());
-        existingChef.setChef_phone(chef.getChef_phone());
-        existingChef.setChef_city(chef.getChef_city());
-        existingChef.setChef_description(chef.getChef_description());
-        existingChef.setChef_fblink(chef.getChef_fblink());
-        existingChef.setChef_linkdin(chef.getChef_linkdin());
-        existingChef.setChef_image(chef.getChef_image());
-        existingChef.setChef_paymode(chef.getChef_paymode());
-        existingChef.setChef_state(chef.getChef_state());
-        existingChef.setChef_street(chef.getChef_street());
-        existingChef.setChef_zip(chef.getChef_zip());
-        existingChef.setChef_city(chef.getChef_city());
-        existingChef.setChef_experience(chef.getChef_experience());
+        Chef existingChef= (Chef) chefRepository.findById(chef.getChef_id()).orElse(null);
+        existingChef.setChef_fname(chef.getChef_fname()!=null?chef.getChef_fname():existingChef.getChef_fname());
+        existingChef.setChef_lname(chef.getChef_lname()!=null?chef.getChef_lname():existingChef.getChef_lname());
+        existingChef.setChef_phone(chef.getChef_phone()!=null?chef.getChef_phone():existingChef.getChef_phone());
+        existingChef.setChef_city(chef.getChef_city()!=null?chef.getChef_city():existingChef.getChef_city());
+        existingChef.setChef_description(chef.getChef_description()!=null?chef.getChef_description():existingChef.getChef_description());
+        existingChef.setChef_fblink(chef.getChef_fblink()!=null?chef.getChef_fblink():existingChef.getChef_fblink());
+        existingChef.setChef_linkdin(chef.getChef_linkdin()!=null?chef.getChef_linkdin():existingChef.getChef_linkdin());
+        existingChef.setChef_image(chef.getChef_image()!=null?chef.getChef_image():existingChef.getChef_image());
+        existingChef.setChef_paymode(chef.getChef_paymode()!=null?chef.getChef_paymode():existingChef.getChef_paymode());
+        existingChef.setChef_state(chef.getChef_state()!=null?chef.getChef_state():existingChef.getChef_state());
+        existingChef.setChef_street(chef.getChef_street()!=null?chef.getChef_street():existingChef.getChef_street());
+        existingChef.setChef_zip(chef.getChef_zip()!=null?chef.getChef_zip():existingChef.getChef_zip());
+        existingChef.setChef_city(chef.getChef_city()!=null?chef.getChef_city():existingChef.getChef_city());
+        existingChef.setChef_experience(chef.getChef_experience()!=0?chef.getChef_experience():existingChef.getChef_experience());
         return chefRepository.save(existingChef);
 
     }

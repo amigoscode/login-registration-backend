@@ -31,6 +31,8 @@ public class ChefSignupService {
             throw new IllegalStateException("email not valid");
         }
 
+
+
         String token = userCredentialsService.signUpUser(
                 new UserCredentials(
                         chefSignupRequest.getEmail(),
