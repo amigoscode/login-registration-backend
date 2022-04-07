@@ -1,5 +1,7 @@
 package ethniconnect_backend.ChefCreateMenu;
 
+import ethniconnect_backend.ChefDetails.Chef;
+import ethniconnect_backend.ChefDetails.ChefRepository;
 import ethniconnect_backend.Cuisines.CuisineCategoriesRepository;
 import ethniconnect_backend.Cuisines.CuisineCategory;
 import ethniconnect_backend.UserCredentials.UserCredentials;
@@ -13,6 +15,8 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 @Service
 public class ChefMenuService  {
 
@@ -23,7 +27,8 @@ public class ChefMenuService  {
 
     @Autowired
     CuisineCategoriesRepository cuisineCategoriesRepository;
-
+    @Autowired
+    private ChefRepository chefRepository;
 
 
     public void saveChefMenu(MultipartFile file,  Long login_id,MenuCategories menucategories,int cuisine_id,
@@ -110,17 +115,16 @@ public class ChefMenuService  {
         return chefMenuRepository.save(existingChefMenu);
 
     }
-/*public List<Chef> getChefByCuisineId(String cuisine_id){
-
-        return chefRepository.getChefsByPrefCuisine(Integer.getInteger(cuisine_id));
-    }
-    public List<CuisineCategory> getCuisinesByZipCode(String zipCode){
+//    public List<Chef> getChefByCuisineId(String cuisine_id){
+//
+//        return chefRepository.getChefsByPrefCuisine(Integer.getInteger(cuisine_id));
+//    }
+    public List<CuisineCategory> getCuisineCategoriesByZipCode(String zipCode){
         CuisineCategory cuisineCategory= new CuisineCategory();
         List<Chef> chefs = chefRepository.getChefsByZip(zipCode);
-        Set<Integer> cuisineId =  chefs.stream().map(Chef::getPrefCuisine).distinct().collect(Collectors.toSet());
+        Set<Integer> categorieId =  chefs.stream().map((chef)->chefMenuRepository.findByLogin_id(chef.getLogin_id())).map((chefMenu)->chefMenu.getCuisineCategory()).map((cuisineCategory)->cuisineCategory.getCuisine_name()).distinct().collect(Collectors.toSet());
         List<CuisineCategory> cuisineCategories = cuisineCategoriesRepository.findAllById(cuisineId);
         return cuisineCategories;
     }
-*/
 
 }
