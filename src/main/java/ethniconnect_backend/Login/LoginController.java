@@ -24,11 +24,13 @@ public class LoginController
 
 
     @PostMapping("/signin")
-    public ResponseEntity<LoginResponse> authenticateUser(@RequestBody UserCredentials userCredentials){
+    public ResponseEntity<LoginResponse> authenticateUser(@RequestBody UserCredentials userCredentials)
+    {
         UserCredentials userCredentialsFromDB = userCredentialsRepository.findByEmail(userCredentials.getEmail()).get();
         LoginResponse loginResponse = new LoginResponse();
         if(userCredentials.getEmail().equals(userCredentialsFromDB.getEmail())
-                && bCryptPasswordEncoder.matches(userCredentials.getPassword(),userCredentialsFromDB.getPassword()))
+                && bCryptPasswordEncoder.matches(userCredentials.getPassword(),userCredentialsFromDB.getPassword())
+                && (userCredentialsFromDB.getEnabled().booleanValue() ||  userCredentialsFromDB.getEnabled() == true))
         {
             //return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
 
@@ -36,6 +38,10 @@ public class LoginController
             return new ResponseEntity<>(loginResponse, HttpStatus.OK);
         }
         loginResponse.setErrormessage("User credentials are wrong");
+        if(!(userCredentialsFromDB.getEnabled().booleanValue() ||  userCredentialsFromDB.getEnabled() == true))
+        {
+            loginResponse.setErrormessage("Account not activated");
+        }
         //SecurityContextHolder.getContext().setAuthentication(authentication);
         return new ResponseEntity<>(loginResponse, HttpStatus.UNAUTHORIZED);
     }

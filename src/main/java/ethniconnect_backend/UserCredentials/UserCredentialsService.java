@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 @Transactional
 @Service
@@ -40,26 +41,41 @@ public class UserCredentialsService implements UserDetailsService {
                                 String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    public String signUpUser(UserCredentials appUser) {
+    public String signUpUser(UserCredentials inputUser) {
+
+        Optional<UserCredentials> existingUserCredentials = appUserRepository.findByEmail(inputUser.getEmail());
         boolean userExists = appUserRepository
-                .findByEmail(appUser.getEmail())
+                .findByEmail(inputUser.getEmail())
                 .isPresent();
 
-        if (userExists) {
+        if (existingUserCredentials.isPresent() ) {
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
-
-            throw new IllegalStateException("email already taken");
+            if(existingUserCredentials.get().isEnabled())
+            {
+                throw new IllegalStateException("email already taken");
+            }
+        }
+        else
+        {
+            existingUserCredentials= Optional.of(inputUser);
         }
 
-        String encodedPassword = bCryptPasswordEncoder
-                .encode(appUser.getPassword());
 
-        appUser.setPassword(encodedPassword);
+            String encodedPassword = bCryptPasswordEncoder
+                    .encode(inputUser.getPassword());
 
-        appUserRepository.save(appUser);
+           if(!existingUserCredentials.isPresent())
+           {
 
-        String token = getToken(appUser);
+           }
+        existingUserCredentials.get().setPassword(encodedPassword);
+        existingUserCredentials.get().setEmail(inputUser.getEmail());
+
+
+            appUserRepository.save(existingUserCredentials.get());
+
+        String token = getToken(existingUserCredentials.get());
 
 //        TODO: SEND EMAIL
 
