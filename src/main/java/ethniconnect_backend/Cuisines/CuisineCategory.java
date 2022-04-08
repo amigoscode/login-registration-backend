@@ -1,6 +1,7 @@
 package ethniconnect_backend.Cuisines;
 
 import ethniconnect_backend.ChefCreateMenu.ChefMenu;
+import ethniconnect_backend.Zip.Zip;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class CuisineCategory {
     @Column(unique = true)
     private String cuisine_name;
     private String cuisine_image;
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cuisineCategory")
     private List<ChefMenu> menus;
