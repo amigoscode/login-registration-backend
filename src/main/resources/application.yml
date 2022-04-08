@@ -10,7 +10,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: password
+    password: bharani16
     initialization-mode: ALWAYS
     url: jdbc:mysql://localhost:3306/ethniconnect?serverTimezone=UTC
     #url: jdbc:mysql://ethniconnectdb.cs03gfixeofo.us-east-2.rds.amazonaws.com:3306/ethniconnect
