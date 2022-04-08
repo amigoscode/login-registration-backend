@@ -17,6 +17,7 @@ public class ChefSignupController {
                           @RequestParam("password") String password)
     {
          registrationService.register(email,password);
+
     }
 
     @GetMapping("api/v1/registration/confirm")

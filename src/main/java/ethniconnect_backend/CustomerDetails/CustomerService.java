@@ -86,15 +86,17 @@ public class CustomerService {
     public Customer updateCust(Customer customer)
     {
         Customer existingCustomer=customerRepository.findById(customer.getCust_id()).orElse(null);
-        existingCustomer.setCust_fname(customer.getCust_fname());
-        existingCustomer.setCust_lname(customer.getCust_lname());
-        existingCustomer.setCust_phone(customer.getCust_phone());
-        existingCustomer.setCust_emailid(customer.getCust_emailid());
-        existingCustomer.setCust_street(customer.getCust_street());
-        existingCustomer.setCust_city(customer.getCust_city());
-        existingCustomer.setCust_state(customer.getCust_state());
-        existingCustomer.setCust_zip(customer.getCust_zip());
-        existingCustomer.setCust_image(customer.getCust_image());
+        existingCustomer.setCust_fname(customer.getCust_fname()!=null?customer.getCust_fname():existingCustomer.getCust_fname());
+        existingCustomer.setCust_lname(customer.getCust_lname()!=null?customer.getCust_lname():existingCustomer.getCust_lname());
+
+        existingCustomer.setCust_phone(customer.getCust_phone()!=null?customer.getCust_phone():existingCustomer.getCust_phone());
+        existingCustomer.setCust_emailid(customer.getCust_emailid()!=null?customer.getCust_emailid():existingCustomer.getCust_emailid());
+        existingCustomer.setCust_street(customer.getCust_street()!=null?customer.getCust_street():existingCustomer.getCust_street());
+        existingCustomer.setCust_city(customer.getCust_city()!=null?customer.getCust_city():existingCustomer.getCust_city());
+        existingCustomer.setCust_state(customer.getCust_state()!=null?customer.getCust_state():existingCustomer.getCust_state());
+        existingCustomer.setCust_zip(customer.getCust_zip()!=null?customer.getCust_zip():existingCustomer.getCust_zip());
+        existingCustomer.setCust_image(customer.getCust_image()!=null?customer.getCust_image():existingCustomer.getCust_image());
+
         return customerRepository.save(existingCustomer);
 
     }

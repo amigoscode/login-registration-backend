@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "customer")
+@Table(name = "customer",uniqueConstraints= {@UniqueConstraint(columnNames = {"cust_emailid","cust_phone"})})
 public class Customer {
     @Id
     @GeneratedValue

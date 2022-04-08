@@ -10,8 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "chef")
-        //(uniqueConstraints={@UniqueConstraint(columnNames = {"chef_emailid"})})
+@Table(name = "chef",uniqueConstraints= {@UniqueConstraint(columnNames = {"chef_emailid","chef_phone"})})
 
 
 public class Chef {
