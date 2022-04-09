@@ -4,6 +4,7 @@ import ethniconnect_backend.Cuisines.CuisineCategory;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -14,10 +15,8 @@ import javax.persistence.*;
 public class ChefMenuRequest {
     private int id;
     private long login_id;
-    @Enumerated(EnumType.STRING)
-    private MenuCategories menucategories;
+    private List<ChefMenuItem> menu;
     private int cuisine_id;
-    private String menu_item_image;
     private String item_name;
     private int menu_item_price;
     private String item_ingredients;

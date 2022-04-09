@@ -28,7 +28,7 @@ public class CustomerService {
         Optional<UserCredentials> userData = userCredentialsRepository.findByEmail(emailid);
         if(!userData.isPresent())
             throw new Exception("user Id doesn't exist");
-        Long loginId = userData.get().getId();
+        Long loginId = userData.get().getLoginid();
 
         customer.setLogin_id(loginId);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());

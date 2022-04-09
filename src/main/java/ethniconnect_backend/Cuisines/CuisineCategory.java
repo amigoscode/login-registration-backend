@@ -14,10 +14,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
 @Table(name = "cuisinecategory")
-
 public class CuisineCategory {
     @Id
     @GeneratedValue
@@ -26,8 +24,8 @@ public class CuisineCategory {
     private String cuisine_name;
     private String cuisine_image;
 
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cuisineCategory")
-    private List<ChefMenu> menus;
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cuisineCategory")
+//    private List<ChefMenu> menus;
 
 }

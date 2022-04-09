@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -20,7 +21,6 @@ public class ChefMenu {
     @Id
     @GeneratedValue
     private int id;
-    private long login_id;
     @Enumerated(EnumType.STRING)
     private MenuCategories menucategories;
     //private int cuisine_id;
@@ -35,15 +35,15 @@ public class ChefMenu {
     private  Week week;
 
     //@ManyToOne
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cuisine_id")
     private CuisineCategory cuisineCategory;
-    @ManyToMany(mappedBy = "menu_items")
-    Set<Order> orders;
+//    @ManyToMany(mappedBy = "menu_items")
+//    Set<Order> orders;
 
-   /* @OneToOne
-    @JoinColumn (name="login_id", insertable = false, updatable = false)
-    private Chef chef;*/
+    @ManyToOne
+    @JoinColumn (name="loginid")
+    private Chef chef;
     /*@JoinTable(
             name = "selected_cuisines",
             joinColumns = @JoinColumn(name = "menu_item_id"),

@@ -13,6 +13,7 @@ import java.util.Optional;
 public interface UserCredentialsRepository
         extends JpaRepository<UserCredentials, Long> {
 
+    Optional<UserCredentials> findByLoginid(long login_id);
     Optional<UserCredentials> findByEmail(String email);
     public UserCredentials findByResetpasswordtoken(String token);
 
@@ -21,6 +22,7 @@ public interface UserCredentialsRepository
     @Query("UPDATE UserCredentials a " +
             "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableAppUser(String email);
+
 
 
 

@@ -34,28 +34,48 @@ public class ContactService {
     }*/
 
 
-    public void saveContactRequest(String email, String name, String message) {
-        boolean isValidEmail = emailValidator.
-                test(email);
+//    public void saveContactRequest(String email, String name, String message) {
+//        boolean isValidEmail = emailValidator.
+//                test(email);
+//
+//        if (!isValidEmail) {
+//            throw new IllegalStateException("email not valid");
+//        }
+//
+//
+//        /*String link = "www.google.com";*/
+//        Contact contact = new Contact();
+//        contact.setEmailid(email);
+//        contact.setMessage(message);
+//        contact.setName(name);
+//        contactRepository.save(contact);
+//        emailSender.send(
+//                "ethniconnect@gmail.com",
+//                emailService.buildContactEmail(message,email));
+//        contactRepository.save(contact);
+//
+//        //return token;
+//    }
+public void saveContactRequest(Contact contact) {
+    boolean isValidEmail = emailValidator.
+            test(contact.getEmailid());
 
-        if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
-        }
-
-
-        /*String link = "www.google.com";*/
-        Contact contact = new Contact();
-        contact.setEmailid(email);
-        contact.setMessage(message);
-        contact.setName(name);
-        contactRepository.save(contact);
-        emailSender.send(
-                "ethniconnect@gmail.com",
-                emailService.buildContactEmail(message,email));
-        contactRepository.save(contact);
-
-        //return token;
+    if (!isValidEmail) {
+        throw new IllegalStateException("email not valid");
     }
+
+
+    /*String link = "www.google.com";*/
+
+
+    contactRepository.save(contact);
+    emailSender.send(
+            "ethniconnect@gmail.com",
+            emailService.buildContactEmail(contact.getMessage(),contact.getEmailid()));
+    contactRepository.save(contact);
+
+    //return token;
+}
 
 
     public List<Contact> getContactRequets()

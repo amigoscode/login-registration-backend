@@ -12,8 +12,16 @@ public class ContactController {
     private ContactService contactService;
     @Autowired
     private ContactRepository contactRepository;
-
     @PostMapping("/ContactRequest")
+    public void addcontactrequest(@RequestBody Contact contact)
+
+    {
+        contactService.saveContactRequest(contact);
+
+        //return "request added";
+    }
+
+   /* @PostMapping("/ContactRequest")
     public void addcontactrequest(@RequestParam("name") String name,
                                     @RequestParam("email") String email,
                                     @RequestParam("message") String message
@@ -22,7 +30,7 @@ public class ContactController {
         contactService.saveContactRequest(name,email,message);
 
         //return "request added";
-    }
+    }*/
 
     @GetMapping({"/ContactRequests"})
     public List<Contact> findcontactrequests()

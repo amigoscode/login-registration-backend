@@ -31,7 +31,7 @@ public class UserCredentials implements UserDetails {
             generator = "chef_sequence"
     )
 
-    private Long id;
+    private long loginid;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)

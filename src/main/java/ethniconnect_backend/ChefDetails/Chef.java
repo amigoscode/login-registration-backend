@@ -12,12 +12,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "chef",uniqueConstraints= {@UniqueConstraint(columnNames = {"chef_emailid","chef_phone"})})
 
-
 public class Chef {
+//    @Id
+//    @GeneratedValue
+//    private int chef_id;
     @Id
-    @GeneratedValue
-    private int chef_id;
-    private long login_id;
+    private long loginid;
     private String chef_fname;
     private String chef_lname;
     private String chef_emailid;

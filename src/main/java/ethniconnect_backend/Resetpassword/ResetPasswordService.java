@@ -34,7 +34,7 @@ public class ResetPasswordService {
         if(userCredentialsService.isEmailIdExist(resetPasswordRequest.getEmailId()))
         {
             String token = userCredentialsService.getToken(userCredentials);
-            String link = "http://localhost:5000/api/v1/resetpassword/confirm?token=" + token;
+            String link = "http://localhost:8080/api/v1/resetpassword/confirm?token=" + token;
             emailSender.send(
                     resetPasswordRequest.getEmailId(),
                     emailService.buildResetPasswordEmail("User", link));

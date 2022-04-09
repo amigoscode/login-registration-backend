@@ -34,7 +34,7 @@ public class LoginController
         {
             //return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
 
-            loginResponse.setLoginId(userCredentialsFromDB.getId());
+            loginResponse.setLoginId(userCredentialsFromDB.getLoginid());
             return new ResponseEntity<>(loginResponse, HttpStatus.OK);
         }
         loginResponse.setErrormessage("User credentials are wrong");

@@ -1,6 +1,5 @@
 package ethniconnect_backend.ChefDetails;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
 import ethniconnect_backend.UserCredentials.UserCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,9 @@ public class ChefService {
             throw new Exception("user Id doesn't exist");
 
 
-        Long loginId = userData.get().getId();
+        Long loginId = userData.get().getLoginid();
 
-        chef.setLogin_id(loginId);
+        chef.setLoginid(loginId);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         if (fileName.contains("..")) {
             System.out.println("not a a valid file");
@@ -74,7 +73,11 @@ public class ChefService {
     public List<Chef> saveChefs(List<Chef> chefs) {
         return chefRepository.saveAll(chefs);
     }
+    public Chef getChefByLoginId(long loginid) {
 
+         Optional<Chef> chef = chefRepository.findByLoginid(loginid);
+         return chef.get();
+    }
     public List<Chef> getChefs() {
         return chefRepository.findAll();
     }
@@ -89,7 +92,7 @@ public class ChefService {
     }
 
     public Chef updateChef(Chef chef) {
-        Chef existingChef = (Chef) chefRepository.findById(chef.getChef_id()).orElse(null);
+        Chef existingChef = (Chef) chefRepository.findByLoginid(chef.getLoginid()).orElse(null);
         existingChef.setChef_fname(chef.getChef_fname() != null ? chef.getChef_fname() : existingChef.getChef_fname());
         existingChef.setChef_lname(chef.getChef_lname() != null ? chef.getChef_lname() : existingChef.getChef_lname());
         existingChef.setChef_phone(chef.getChef_phone() != null ? chef.getChef_phone() : existingChef.getChef_phone());
@@ -110,7 +113,7 @@ public class ChefService {
 
 
 
-    public void getJson(String chef, MultipartFile chef_image) throws Exception {
+    /*public void getJson(String chef, MultipartFile chef_image) throws Exception {
         Chef chefJson = new Chef();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -137,7 +140,7 @@ public class ChefService {
         }
         chefRepository.save(chefJson);
 
-    }
+    }*/
 }
 
 

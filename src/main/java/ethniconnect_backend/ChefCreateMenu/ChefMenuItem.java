@@ -2,27 +2,22 @@ package ethniconnect_backend.ChefCreateMenu;
 
 import lombok.*;
 
-import java.util.List;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
-
+@Data
 @Builder
 @Getter
 @Setter
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class ChefMenuGETResponse {
-    List<ChefMenuResponse> chefMenuList;
+@ToString
+public class ChefMenuItem {
 
-   /* private long login_id;
-    private int cuisine_id;
-    private MenuCategories menucategories;
+    @Enumerated(EnumType.STRING)
+    private MenuCategories menucategory;
     private String menu_item_image;
     private String item_name;
     private double menu_item_price;
     private String item_ingredients;
     private String item_intresting_facts;
-    private  Week week;*/
-
-
 }

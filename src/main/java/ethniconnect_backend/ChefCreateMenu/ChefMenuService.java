@@ -12,10 +12,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class ChefMenuService  {
@@ -31,20 +31,55 @@ public class ChefMenuService  {
     private ChefRepository chefRepository;
 
 
-    public void saveChefMenu(MultipartFile file,  Long login_id,MenuCategories menucategories,int cuisine_id,
+    public void saveChefMenuJson(ChefMenuRequest chefMenuRequest) throws Exception{
+
+
+        ChefMenu chefMenu =null;
+
+        Optional<UserCredentials> userData = userCredentialsRepository.findById(chefMenuRequest.getLogin_id());
+        if(!userData.isPresent())
+            throw new Exception("user Id doesn't exist");
+        Optional<CuisineCategory> cuisineCategory = cuisineCategoriesRepository.findById(chefMenuRequest.getCuisine_id());
+        if(cuisineCategory == null)
+            throw new Exception("cuisine category doesn't exist");
+
+        Optional<Chef> chef = chefRepository.findByLoginid(chefMenuRequest.getLogin_id());
+        if(chef==null)
+            throw new Exception("chef doesn't exist");
+
+        for(ChefMenuItem chefMenuItem:chefMenuRequest.getMenu())
+        {
+            // Long loginId = userData.get().getId();
+            if(cuisineCategory == null)
+                throw new Exception("cuisine category doesn't exist");
+            chefMenu =new ChefMenu();
+            chefMenu.setCuisineCategory(cuisineCategory.get());
+            chefMenu.setChef(chef.get());
+            chefMenu.setMenu_item_image(chefMenuItem.getMenu_item_image());
+            chefMenu.setMenucategories(chefMenuItem.getMenucategory());
+            chefMenu.setItem_ingredients(chefMenuItem.getItem_ingredients());
+            chefMenu.setMenu_item_price(chefMenuItem.getMenu_item_price());
+            chefMenuRepository.save(chefMenu);
+        }
+
+    }
+
+    public void saveChefMenu(MultipartFile file,  int login_id,MenuCategories menucategories,int cuisine_id,
                          String item_name,double menu_item_price,String item_ingredients,
                          String item_intresting_facts,Week week
                         ) throws Exception
     {
         ChefMenu chefMenu =new ChefMenu();
-        Optional<UserCredentials> userData = userCredentialsRepository.findById(login_id);
+        Optional<UserCredentials> userData = userCredentialsRepository.findByLoginid(login_id);
         if(!userData.isPresent())
             throw new Exception("user Id doesn't exist");
         Optional<CuisineCategory> cuisineCategory = cuisineCategoriesRepository.findById(cuisine_id);
         // Long loginId = userData.get().getId();
         if(cuisineCategory == null)
-            throw new Exception("cuisine category doesn't exist");
-
+            throw new Exception("Cuisine doesn't exist");
+        Optional<Chef> chef = chefRepository.findByLoginid(login_id);
+        if(chef==null)
+            throw new Exception("chef doesn't exist");
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         if(fileName.contains(".."))
         {
@@ -55,7 +90,6 @@ public class ChefMenuService  {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        chefMenu.setLogin_id(login_id);
         chefMenu.setMenucategories(menucategories);
 
         chefMenu.setMenu_item_price(menu_item_price);
@@ -80,7 +114,7 @@ public class ChefMenuService  {
     {
         ChefMenu chefMenu  = chefMenuRepository.findById(id).get();
 
-        ChefMenuGETResponse chefMenuGETResponse = ChefMenuGETResponse.builder()
+        /*ChefMenuGETResponse chefMenuGETResponse = ChefMenuGETResponse.builder()
                 .cuisine_id(chefMenu.getCuisineCategory().getId())
                 .login_id(chefMenu.getLogin_id())
                 .menucategories(chefMenu.getMenucategories())
@@ -90,17 +124,53 @@ public class ChefMenuService  {
                 .item_ingredients(chefMenu.getItem_ingredients())
                 .item_intresting_facts(chefMenu.getItem_intresting_facts())
                 .week(chefMenu.getWeek())
-                .build();
-        return chefMenuGETResponse;
+                .build();*/
+        return new ChefMenuGETResponse();
 
 
     }
+    public ChefMenuGETResponse getChefMenuByLoginId(long login_id) {
+        Chef chef = new Chef();
+        chef.setLoginid(login_id);
+        List<ChefMenu> chefMenuList = chefMenuRepository.findAllByChef(chef);
+        List<ChefMenuResponse> chefMenuResponseList = new ArrayList<>();
 
-    public String deleteChefMenu(int chefMenu_id)
-    {
-        chefMenuRepository.deleteById(chefMenu_id);
-        return "chef Menu ietem removed !!" + chefMenu_id;
+       /* ChefMenuGETResponse chefMenuGETResponse = ChefMenuGETResponse.builder()
+                .cuisine_id(chefMenu.getCuisineCategory().getId())
+                .login_id(chefMenu.getLogin_id())
+                .menucategories(chefMenu.getMenucategories())
+                .item_name(chefMenu.getItem_name())
+                .menu_item_image(chefMenu.getMenu_item_image())
+                .menu_item_price(chefMenu.getMenu_item_price())
+                .item_ingredients(chefMenu.getItem_ingredients())
+                .item_intresting_facts(chefMenu.getItem_intresting_facts())
+                .week(chefMenu.getWeek())
+                .build();*/
+        for(ChefMenu chefMenu:chefMenuList)
+        {
+            chefMenuResponseList.add
+                    ( ChefMenuResponse
+                            .builder()
+                            .menuid(chefMenu.getId())
+                            .menu_item_image(chefMenu.getMenu_item_image()!=null?chefMenu.getMenu_item_image():null)
+                            .menucategory(chefMenu.getMenucategories().toString())
+                            .cuisineCategory(chefMenu.getCuisineCategory().getCuisine_name())
+                            .menu_item_price(chefMenu.getMenu_item_price())
+                            .item_name(chefMenu.getItem_name())
+                            .item_ingredients(chefMenu.getItem_ingredients())
+                            .item_intresting_facts(chefMenu.getItem_intresting_facts())
+                            .week(chefMenu.getWeek()!=null?chefMenu.getWeek().toString():null)
+                            .build()
+                    );
+        }
+        return ChefMenuGETResponse.builder().chefMenuList(chefMenuResponseList).build();
     }
+
+//        public String deleteChefMenu(int chefMenu_id)
+//    {
+//        chefMenuRepository.deleteById(chefMenu_id);
+//        return "chef Menu ietem removed !!" + chefMenu_id;
+//    }
     public ChefMenu updateChefMenu(ChefMenu chefMenu)
     {
         ChefMenu existingChefMenu=chefMenuRepository.findById(chefMenu.getId()).orElse(null);
@@ -116,6 +186,8 @@ public class ChefMenuService  {
 
 
     }
+
+
 //    public List<Chef> getChefByCuisineId(String cuisine_id){
 //
 //        return chefRepository.getChefsByPrefCuisine(Integer.getInteger(cuisine_id));
