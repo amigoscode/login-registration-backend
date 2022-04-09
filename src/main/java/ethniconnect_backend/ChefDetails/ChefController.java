@@ -2,8 +2,11 @@ package ethniconnect_backend.ChefDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.print.attribute.standard.Media;
 
 @CrossOrigin()
 @RestController
@@ -12,7 +15,8 @@ public class ChefController {
     private ChefService chefProfileService;
     @Autowired
     private ChefRepository chefRepository;
-   @PostMapping("/chef")
+
+    /*@PostMapping("/chef")
     public String addchef(@RequestParam("file") MultipartFile file,
                           @RequestParam("chef_fname") String fname,
                           @RequestParam("chef_lname") String lname,
@@ -27,11 +31,11 @@ public class ChefController {
                           @RequestParam("chef_experience") int chef_experience,
                           @RequestParam("chef_fblink") String chef_fblink,
                           @RequestParam("chef_linkdin") String chef_linkdin) throws Exception {
-        chefProfileService.saveChef(file, fname, lname,emailid,chef_phone,chef_street,
-                chef_city,chef_state,chef_zip,chef_paymode,chef_description,
-                chef_experience,chef_fblink,chef_linkdin);
+        chefProfileService.saveChef(file, fname, lname, emailid, chef_phone, chef_street,
+                chef_city, chef_state, chef_zip, chef_paymode, chef_description,
+                chef_experience, chef_fblink, chef_linkdin);
         return "chef details added";
-    }
+    }*/
 
    /* @PostMapping("/chef")
     public Chef addChef(@RequestBody Chef chef) throws Exception
@@ -40,15 +44,13 @@ public class ChefController {
     }*/
 
 
-   @GetMapping({"/chefById/{id}"})
-   public Chef findChefById(@PathVariable int id)
-   {
-       return chefProfileService.getChefById(id);
-   }
+    @GetMapping({"/chefById/{id}"})
+    public Chef findChefById(@PathVariable int id) {
+        return chefProfileService.getChefById(id);
+    }
 
     @PutMapping("/updatechef")
-    public Chef updateChef(@RequestBody Chef chef)
-    {
+    public Chef updateChef(@RequestBody Chef chef) {
         return chefProfileService.updateChef(chef);
     }
 
@@ -57,6 +59,14 @@ public class ChefController {
     {
         return chefRepository.getChefProfileInfo();
     }*/
+
+    @PostMapping(value = "/chef", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public String upload(@RequestPart("chef") String chef, @RequestPart("chef_image") MultipartFile chef_image) throws Exception {
+       chefProfileService.getJson(chef,chef_image);
+       return "added";
+
+
+    }
 
 
 

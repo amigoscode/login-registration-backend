@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ChefRepository extends JpaRepository <Chef, Integer> {
+
     //Optional<Object> findByLogin_Id(long login_id);
 
     /*    *//*@Query("SELECT new ethniconnect_backend.ChefDetails.ChefprofileResponse( c.chef_fname, m.menu_item_price)" +
