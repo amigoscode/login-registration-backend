@@ -17,7 +17,7 @@ public class ChefController {
     private ChefRepository chefRepository;
 
     @PostMapping("/chef")
-    public String addchef(@RequestParam("file") MultipartFile file,
+    public void addchef(@RequestParam("file") MultipartFile file,
                           @RequestParam("chef_fname") String fname,
                           @RequestParam("chef_lname") String lname,
                           @RequestParam("chef_emailid") String emailid,
@@ -34,7 +34,7 @@ public class ChefController {
         chefProfileService.saveChef(file, fname, lname, emailid, chef_phone, chef_street,
                 chef_city, chef_state, chef_zip, chef_paymode, chef_description,
                 chef_experience, chef_fblink, chef_linkdin);
-        return "chef details added";
+        //return "chef details added";
     }
 
    /* @PostMapping("/chef")
