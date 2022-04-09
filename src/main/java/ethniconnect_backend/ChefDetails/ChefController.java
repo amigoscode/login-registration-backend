@@ -51,8 +51,8 @@ public class ChefController {
     }
 
     @PutMapping("/updatechef")
-    public Chef updateChef(@RequestBody Chef chef) {
-        return chefProfileService.updateChef(chef);
+    public Chef updateChef(@RequestBody ChefRequest chefRequest) {
+        return chefProfileService.updateChef(chefRequest);
     }
 
   /* @GetMapping({"/chefprofile"})

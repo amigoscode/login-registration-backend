@@ -91,7 +91,10 @@ public class ChefService {
         return "chef removed !!" + chef_id;
     }
 
-    public Chef updateChef(Chef chef) {
+
+
+
+   /* public Chef updateChef(Chef chef) {
         Chef existingChef = (Chef) chefRepository.findByLoginid(chef.getLoginid()).orElse(null);
         existingChef.setChef_fname(chef.getChef_fname() != null ? chef.getChef_fname() : existingChef.getChef_fname());
         existingChef.setChef_lname(chef.getChef_lname() != null ? chef.getChef_lname() : existingChef.getChef_lname());
@@ -109,9 +112,26 @@ public class ChefService {
         existingChef.setChef_experience(chef.getChef_experience() != 0 ? chef.getChef_experience() : existingChef.getChef_experience());
         return chefRepository.save(existingChef);
 
-    }
+    }*/
+   public Chef updateChef(ChefRequest chefRequest) {
+       Chef existingChef = (Chef) chefRepository.findByLoginid(chefRequest.getLogin_id()).orElse(null);
+       existingChef.setChef_fname(chefRequest.getChef_fname() != null ? chefRequest.getChef_fname() : existingChef.getChef_fname());
+       existingChef.setChef_lname(chefRequest.getChef_lname() != null ? chefRequest.getChef_lname() : existingChef.getChef_lname());
+       existingChef.setChef_phone(chefRequest.getChef_phone() != null ? chefRequest.getChef_phone() : existingChef.getChef_phone());
+       existingChef.setChef_city(chefRequest.getChef_city() != null ? chefRequest.getChef_city() : existingChef.getChef_city());
+       existingChef.setChef_description(chefRequest.getChef_description() != null ? chefRequest.getChef_description() : existingChef.getChef_description());
+       existingChef.setChef_fblink(chefRequest.getChef_fblink() != null ? chefRequest.getChef_fblink() : existingChef.getChef_fblink());
+       existingChef.setChef_linkdin(chefRequest.getChef_linkdin() != null ? chefRequest.getChef_linkdin() : existingChef.getChef_linkdin());
+       existingChef.setChef_image(chefRequest.getChef_image() != null ? chefRequest.getChef_image() : existingChef.getChef_image());
+       existingChef.setChef_paymode(chefRequest.getChef_paymode() != null ? chefRequest.getChef_paymode() : existingChef.getChef_paymode());
+       existingChef.setChef_state(chefRequest.getChef_state() != null ? chefRequest.getChef_state() : existingChef.getChef_state());
+       existingChef.setChef_street(chefRequest.getChef_street() != null ? chefRequest.getChef_street() : existingChef.getChef_street());
+       existingChef.setChef_zip(chefRequest.getChef_zip() != null ? chefRequest.getChef_zip() : existingChef.getChef_zip());
+       existingChef.setChef_city(chefRequest.getChef_city() != null ? chefRequest.getChef_city() : existingChef.getChef_city());
+       existingChef.setChef_experience(chefRequest.getChef_experience() != 0 ? chefRequest.getChef_experience() : existingChef.getChef_experience());
+       return chefRepository.save(existingChef);
 
-
+   }
 
     /*public void getJson(String chef, MultipartFile chef_image) throws Exception {
         Chef chefJson = new Chef();
