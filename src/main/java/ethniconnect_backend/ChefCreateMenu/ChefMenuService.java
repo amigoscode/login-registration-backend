@@ -64,7 +64,7 @@ public class ChefMenuService  {
 
     }
 
-    public void saveChefMenu(MultipartFile file,  int login_id,MenuCategories menucategories,int cuisine_id,
+    /*public void saveChefMenu(MultipartFile file,  int login_id,MenuCategories menucategories,int cuisine_id,
                          String item_name,double menu_item_price,String item_ingredients,
                          String item_intresting_facts,Week week
                         ) throws Exception
@@ -100,7 +100,7 @@ public class ChefMenuService  {
         chefMenu.setWeek(week);
 
         chefMenuRepository.save(chefMenu);
-    }
+    }*/
 
     public List<ChefMenu> saveChefMenus(List<ChefMenu> chefMenus){
         return chefMenuRepository.saveAll(chefMenus);

@@ -49,8 +49,5 @@ public class ChefMenu {
             joinColumns = @JoinColumn(name = "menu_item_id"),
             inverseJoinColumns = @JoinColumn(name = "cuisine_id"))
     Set<CuisineCategories> selectedCuisines;*/
-   /* @OneToMany
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu_items", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("menu")
-    private List<Story> storyList = new ArrayList<>();*/
+
 }
