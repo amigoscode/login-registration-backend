@@ -6,16 +6,20 @@ import ethniconnect_backend.Cuisines.CuisineCategoriesRepository;
 import ethniconnect_backend.Cuisines.CuisineCategory;
 import ethniconnect_backend.UserCredentials.UserCredentials;
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
+import ethniconnect_backend.Zip.ZipCode;
+import ethniconnect_backend.Zip.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ChefMenuService  {
@@ -29,8 +33,8 @@ public class ChefMenuService  {
     CuisineCategoriesRepository cuisineCategoriesRepository;
     @Autowired
     private ChefRepository chefRepository;
-
-
+    @Autowired
+    private RestTemplate restTemplate;
     public void saveChefMenuJson(ChefMenuRequest chefMenuRequest) throws Exception{
 
 
@@ -130,6 +134,20 @@ public class ChefMenuService  {
         return new ChefMenuGETResponse();
 
 
+    }
+    public List<Chef> getChefByCuisineId(int cuisineId, int zipCode) {
+        String url = "https://www.zipcodeapi.com/rest/Ze6ACQDfcjCFyzV7odLA4qyMLa6QraqkfHusGNor4GHrcy5w8XnT0pS0g9VOHkp1/radius.json/"+zipCode+"/6/mile";
+        List<ChefMenu> chefMenu  = chefMenuRepository.findAllByCuisineCategory_Id(cuisineId);
+        Set<Chef> chefSet = chefMenu.stream().map(ChefMenu::getChef).collect(Collectors.toSet());
+        Root zipCodeApiResponse = restTemplate.getForObject(url, Root.class);
+        List<String> zipCodes = zipCodeApiResponse.getZip_codes().stream().map(ZipCode::getZip_code).collect(Collectors.toList());
+        List<Chef> chefList = new ArrayList<>();
+        for(Chef chef:chefSet){
+            if(zipCodes.contains(chef.getChef_zip())){
+                chefList.add(chef);
+            }
+        }
+     return chefList;
     }
     public ChefMenuGETResponse getChefMenuByLoginId(long login_id) {
         Chef chef = new Chef();

@@ -10,5 +10,7 @@ import java.util.Optional;
 public interface ChefMenuRepository extends JpaRepository<ChefMenu,Integer> {
     List<ChefMenu> findAllByChef(Chef chef);
 
+    List<ChefMenu> findAllByCuisineCategory_Id(int cuisineId);
+
 
 }
