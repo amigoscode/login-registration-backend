@@ -55,10 +55,12 @@ public class ChefMenuService  {
             chefMenu =new ChefMenu();
             chefMenu.setCuisineCategory(cuisineCategory.get());
             chefMenu.setChef(chef.get());
+            chefMenu.setItem_name(chefMenuRequest.getItem_name());
             chefMenu.setMenu_item_image(chefMenuItem.getMenu_item_image());
             chefMenu.setMenucategories(chefMenuItem.getMenucategory());
             chefMenu.setItem_ingredients(chefMenuItem.getItem_ingredients());
             chefMenu.setMenu_item_price(chefMenuItem.getMenu_item_price());
+            chefMenu.setWeek(chefMenuRequest.getWeek());
             chefMenuRepository.save(chefMenu);
         }
 

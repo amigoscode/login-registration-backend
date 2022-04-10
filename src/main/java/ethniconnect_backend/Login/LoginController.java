@@ -2,6 +2,7 @@ package ethniconnect_backend.Login;
 
 import ethniconnect_backend.UserCredentials.UserCredentials;
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
+import ethniconnect_backend.UserCredentials.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,10 @@ public class LoginController
     {
         UserCredentials userCredentialsFromDB = userCredentialsRepository.findByEmail(userCredentials.getEmail()).get();
         LoginResponse loginResponse = new LoginResponse();
+        if(userCredentialsFromDB.getAppUserRole().toString().equalsIgnoreCase(UserRole.BUSINESS.toString()))
+            loginResponse.setChef(true);
+        if(userCredentialsFromDB.getAppUserRole().toString().equalsIgnoreCase(UserRole.PERSONAL.toString()))
+            loginResponse.setCustomer(true);
         if(userCredentials.getEmail().equals(userCredentialsFromDB.getEmail())
                 && bCryptPasswordEncoder.matches(userCredentials.getPassword(),userCredentialsFromDB.getPassword())
                 && (userCredentialsFromDB.getEnabled().booleanValue() ||  userCredentialsFromDB.getEnabled() == true))
@@ -42,6 +47,7 @@ public class LoginController
         {
             loginResponse.setErrormessage("Account not activated");
         }
+
         //SecurityContextHolder.getContext().setAuthentication(authentication);
         return new ResponseEntity<>(loginResponse, HttpStatus.UNAUTHORIZED);
     }

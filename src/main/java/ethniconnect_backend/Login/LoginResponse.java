@@ -9,5 +9,8 @@ import lombok.Setter;
 @Setter
 public class LoginResponse {
     private long loginId;
+    private boolean isChef;
+    private boolean isCustomer;
     private String errormessage;
+
 }
