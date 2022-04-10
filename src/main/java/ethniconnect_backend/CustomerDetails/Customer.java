@@ -17,8 +17,6 @@ import java.util.Set;
 @Table(name = "customer",uniqueConstraints= {@UniqueConstraint(columnNames = {"cust_emailid","cust_phone"})})
 public class Customer {
     @Id
-    @GeneratedValue
-    private int cust_id;
     private long loginid;
     private String cust_fname;
     private String cust_lname;
@@ -35,8 +33,8 @@ public class Customer {
     private String cust_image;
     /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<Order> orders;*/
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<Order> orders;
+//    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    private Set<Order> orders;
 
 }

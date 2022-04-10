@@ -25,8 +25,8 @@ public class Order {
     @Id
     @GeneratedValue
     private int order_id;
-    private long chef_loginid;
-    private int cust_loginid;
+//    private long chef_loginid;
+//    private int cust_loginid;
     private int menu_id;
     private LocalDate order_date;
 

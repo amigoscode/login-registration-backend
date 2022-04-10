@@ -94,7 +94,7 @@ public class CustomerService {
     }
     public Customer updateCust(Customer customer)
     {
-        Customer existingCustomer=customerRepository.findById(customer.getCust_id()).orElse(null);
+        Customer existingCustomer=customerRepository.findByLoginid(customer.getLoginid()).orElse(null);
         existingCustomer.setCust_fname(customer.getCust_fname()!=null?customer.getCust_fname():existingCustomer.getCust_fname());
         existingCustomer.setCust_lname(customer.getCust_lname()!=null?customer.getCust_lname():existingCustomer.getCust_lname());
 
