@@ -19,7 +19,7 @@ public class Customer {
     @Id
     @GeneratedValue
     private int cust_id;
-    private long login_id;
+    private long loginid;
     private String cust_fname;
     private String cust_lname;
     private String cust_emailid;

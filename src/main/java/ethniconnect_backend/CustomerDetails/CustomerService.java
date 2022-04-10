@@ -1,6 +1,7 @@
 package ethniconnect_backend.CustomerDetails;
 
 
+import ethniconnect_backend.ChefDetails.Chef;
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
 import ethniconnect_backend.UserCredentials.UserCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class CustomerService {
             throw new Exception("user Id doesn't exist");
         Long loginId = userData.get().getLoginid();
 
-        customer.setLogin_id(loginId);
+        customer.setLoginid(loginId);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         if(fileName.contains(".."))
         {
@@ -75,6 +76,14 @@ public class CustomerService {
     public Customer getCustById(int cust_id){
         return customerRepository.findById(cust_id).orElse(null);
     }
+
+
+    public Customer getCustomerByLoginId(long loginid) {
+
+        Optional<Customer> customer = customerRepository.findByLoginid(loginid);
+        return customer.get();
+    }
+
     /*public Chef getChefByEmailId(String chef_emailid){
         return chefProfileRepository.findByEmailId(chef_emailid);
     }*/

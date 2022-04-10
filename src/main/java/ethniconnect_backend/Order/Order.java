@@ -25,12 +25,11 @@ public class Order {
     @Id
     @GeneratedValue
     private int order_id;
-    private long login_id;
-    private int cust_id;
+    private long chef_loginid;
+    private int cust_loginid;
     private int menu_id;
     private LocalDate order_date;
-    private LocalDateTime pickup_time;
-    private String order_instructions;
+
     private double order_amount;
 
    /* @OneToOne(fetch = FetchType.LAZY,
@@ -38,7 +37,7 @@ public class Order {
             mappedBy = "orders")
     private Customer customer;*/
    @ManyToOne
-   @JoinColumn(name="cust_id", insertable = false, updatable = false)
+   @JoinColumn(name="loginid", insertable = false, updatable = false)
    private Customer customer;
     @ManyToMany
     @JoinTable(
