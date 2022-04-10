@@ -13,7 +13,7 @@ public class ZipService {
        return zipRepository.findAll();
     }
 
-    public Zip getZipByZipCode(int zipCode){
+    public Zip getCuisineByZipCode(int zipCode){
         return zipRepository.getZipByZipCode(zipCode);
     }
 }

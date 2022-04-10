@@ -18,7 +18,7 @@ public class ZipController {
     }
     @GetMapping(path = "/getCuisinesByZip/{zipCode}")
     public Zip getCuisinesByZip(@PathVariable int zipCode){
-        return zipService.getZipByZipCode(zipCode);
+        return zipService.getCuisineByZipCode(zipCode);
 
     }
 
