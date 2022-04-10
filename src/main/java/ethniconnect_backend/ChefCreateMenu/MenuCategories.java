@@ -5,6 +5,9 @@ public enum MenuCategories {
 
         Breakfast,
         Lunch,
-        Dinner
+        Dinner,
+        breakfast,
+        lunch,
+        dinner
 
 }
