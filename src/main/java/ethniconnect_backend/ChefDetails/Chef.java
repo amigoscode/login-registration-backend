@@ -11,11 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "chef",uniqueConstraints= {@UniqueConstraint(columnNames = {"chef_emailid","chef_phone"})})
-
 public class Chef {
-//    @Id
-//    @GeneratedValue
-//    private int chef_id;
     @Id
     private long loginid;
     private String chef_fname;
