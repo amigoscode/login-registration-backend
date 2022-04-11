@@ -1,6 +1,7 @@
 package ethniconnect_backend.CustomerDetails;
 
 
+import ethniconnect_backend.ChefDetails.Chef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,6 +43,14 @@ public class CustomerController {
     {
         return customerService.getCustById(id);
     }
+
+    @GetMapping({"/custByLoginId/{id}"})
+
+    public Customer findCustomerByLoginId(@PathVariable int id) {
+        Long loginidlong = new Long(id);
+        return customerService.getCustomerByLoginId(id);
+    }
+
 
     @PutMapping("/updatecust")
     public Customer updateCust(@RequestBody Customer customer)
