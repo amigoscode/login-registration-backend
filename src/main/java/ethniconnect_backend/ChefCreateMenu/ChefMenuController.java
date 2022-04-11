@@ -1,7 +1,10 @@
 package ethniconnect_backend.ChefCreateMenu;
 
+import ethniconnect_backend.ChefDetails.Chef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin()
 @RestController
@@ -45,7 +48,11 @@ public class ChefMenuController {
         return chefMenuService.getChefMenuByLoginId(loginidlong.longValue());
     }
 
-
+   @GetMapping({"/chefByCuisineId/{id}/{zipCode}"})
+    public List<Chef> findChefByCuisineId(@PathVariable int id, @PathVariable int zipCode)
+    {
+        return chefMenuService.getChefByCuisineId(id,zipCode);
+    }
 
     @PutMapping("/updatechefmenu")
     public ChefMenu updateChefMenu(@RequestBody ChefMenu chefMenu)
