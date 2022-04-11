@@ -39,7 +39,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: ethniconnect@gmail.com
-    password: nftvtqgflwntjipb
+    password: jbjkxybezpvligxn
 
 
     properties:

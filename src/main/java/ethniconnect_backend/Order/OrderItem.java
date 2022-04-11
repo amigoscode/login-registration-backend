@@ -16,25 +16,15 @@ public class OrderItem {
     private int orderid;
     private String special_instructions;
     private int quantity;
-//    @ManyToOne
-//    @JoinColumn(name = "orderid",referencedColumnName = "orderid",insertable = false,updatable = false)
-//   private Orders order;
 
-
-
-    //@OneToOne
     @ManyToOne
     @JoinColumn(name = "menu_id",referencedColumnName = "id",insertable = false,updatable = false)
     private ChefMenu chefMenu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @ManyToOne
+//    @JoinColumn(name = "orderid",referencedColumnName = "orderid",insertable = false,updatable = false)
+//    private Orders orders;
 
-   @JoinColumn(name = "orderid",referencedColumnName = "orderid",insertable = false,updatable = false)
-    //@JoinColumn  (name = "orderid",insertable = false,updatable = false)
-    private Orders orders;
 
-    public Orders getOrders() {
-        return orders;
-    }
 }
 

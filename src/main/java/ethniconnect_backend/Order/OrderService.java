@@ -61,6 +61,6 @@ public class OrderService {
 
     public Orders getOrder(int orderid) {
 
-        return orderRepository.findById(orderid).get();
+        return orderRepository.findByOrderid(orderid).get();
     }
 }
