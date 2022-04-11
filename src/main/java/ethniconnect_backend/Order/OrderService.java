@@ -53,4 +53,9 @@ public class OrderService {
 
 
     }
+
+    public Order getOrder(int orderid) {
+
+        return orderRepository.findByOrderid(orderid).get();
+    }
 }
