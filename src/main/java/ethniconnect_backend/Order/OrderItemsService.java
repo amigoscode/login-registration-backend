@@ -13,6 +13,8 @@ public class OrderItemsService {
     private OrderItemsRepository orderItemsRepository;
 
     public void addOrderedProducts(OrderItem orderItem) {
+        Order order = new Order();
+        orderItem.setOrder_id(order.getOrderid());
         orderItemsRepository.save(orderItem);
     }
 }
