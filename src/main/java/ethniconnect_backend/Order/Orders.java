@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue
@@ -28,9 +28,11 @@ public class Order {
     private long chef_loginid;
 
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "order_id",referencedColumnName = "orderid",insertable = false,updatable = false)
-    private List<OrderItem> orderItems;
+//    @OneToMany(mappedBy = "orders",cascade=CascadeType.ALL,orphanRemoval = true)
+//    //
+//    //@JoinColumn(name = "orderid", referencedColumnName = "orderid", insertable = false, updatable = false)
+//    private List<OrderItem> orderItems;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cust_loginid", referencedColumnName = "loginid", insertable = false, updatable = false)
     private Customer customer;
@@ -38,6 +40,7 @@ public class Order {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "chef_loginid", referencedColumnName = "loginid", insertable = false, updatable = false)
     private Chef chef;
+
 
 
 

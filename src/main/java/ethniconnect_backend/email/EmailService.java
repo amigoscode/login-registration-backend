@@ -1,6 +1,7 @@
 package ethniconnect_backend.email;
 
 import lombok.AllArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,6 +21,7 @@ public class EmailService implements EmailSender{
 
     private final JavaMailSender mailSender;
     public String buildContactEmail(String message,String useremailid) {
+
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +

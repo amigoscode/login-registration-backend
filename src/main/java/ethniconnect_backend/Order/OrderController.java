@@ -1,6 +1,5 @@
 package ethniconnect_backend.Order;
 
-import ethniconnect_backend.ChefCreateMenu.OrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +19,9 @@ public class OrderController {
     }
 
     @GetMapping("/order/{orderid}")
-    public ResponseEntity<Order> getOrder(@PathVariable int orderid)
+    public ResponseEntity<Orders> getOrder(@PathVariable int orderid)
     {
 
-        return new ResponseEntity<Order>(orderService.getOrder(orderid), HttpStatus.OK);
+        return new ResponseEntity<Orders>(orderService.getOrder(orderid), HttpStatus.OK);
     }
 }

@@ -2,6 +2,7 @@ package ethniconnect_backend.Order;
 
 import ethniconnect_backend.ChefCreateMenu.ChefMenu;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
@@ -10,19 +11,30 @@ import javax.persistence.*;
 public class OrderItem {
     @Id
     @GeneratedValue
-    private int order_item_id;
+    private int orderitemid;
     private int menu_id;
-    private int order_id;
+    private int orderid;
     private String special_instructions;
     private int quantity;
-    @ManyToOne
-    @JoinColumn(name = "order_id",referencedColumnName = "orderid",insertable = false,updatable = false)
-    private Order order;
+//    @ManyToOne
+//    @JoinColumn(name = "orderid",referencedColumnName = "orderid",insertable = false,updatable = false)
+//   private Orders order;
 
-    @OneToOne
+
+
+    //@OneToOne
+    @ManyToOne
     @JoinColumn(name = "menu_id",referencedColumnName = "id",insertable = false,updatable = false)
     private ChefMenu chefMenu;
 
+    @ManyToOne(fetch = FetchType.LAZY)
 
+   @JoinColumn(name = "orderid",referencedColumnName = "orderid",insertable = false,updatable = false)
+    //@JoinColumn  (name = "orderid",insertable = false,updatable = false)
+    private Orders orders;
+
+    public Orders getOrders() {
+        return orders;
+    }
 }
 

@@ -1,6 +1,5 @@
-package ethniconnect_backend.ChefCreateMenu;
+package ethniconnect_backend.Order;
 
-import ethniconnect_backend.Order.OrderItem;
 import lombok.*;
 
 import java.util.List;
@@ -14,6 +13,7 @@ public class OrderRequest {
 
     private long chefLoginid;
     private long customerLoginid;
+    private int orderid;
     private double totalprice;
     private List<OrderItem> orderItems;
 
