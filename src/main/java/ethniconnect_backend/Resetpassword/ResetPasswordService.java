@@ -35,7 +35,7 @@ public class ResetPasswordService {
         {
             String token = userCredentialsService.getToken(userCredentials);
             String link = "http://localhost:8080/api/v1/resetpassword/confirm?token=" + token;
-            emailSender.send(
+            emailSender.ResentPwdSend(
                     resetPasswordRequest.getEmailId(),
                     emailService.buildResetPasswordEmail("User", link));
         }
