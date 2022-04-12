@@ -11,7 +11,10 @@ import javax.persistence.*;
 import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -30,9 +33,12 @@ public class Orders {
     private long chef_loginid;
 
 
+
     @OneToMany
     @JoinColumn(name = "orderid", referencedColumnName = "orderid", insertable = false, updatable = false)
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cust_loginid", referencedColumnName = "loginid", insertable = false, updatable = false)
@@ -42,6 +48,15 @@ public class Orders {
     @JoinColumn(name = "chef_loginid", referencedColumnName = "loginid", insertable = false, updatable = false)
     private Chef chef;
 
+//    public void addOrderItems(OrderItem orderItem) {
+//        orderItems.add(orderItem);
+//        orderItem.setOrder(this);
+//    }
+
+  /*  public void removeOrderItems(OrderItem orderItem) {
+        orderItems.remove(orderItem);
+        orderItem.setOrder(null);
+    }*/
 
 
 

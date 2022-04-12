@@ -42,7 +42,7 @@ public class OrderService {
         order.setOrder_amount(orderRequest.getTotalprice());
         order.setChef_loginid(orderRequest.getChefLoginid());
         order.setCust_loginid(orderRequest.getCustomerLoginid());
-        //order.setOrderItems(orderRequest.getOrderItems());
+        order.setOrderItems(orderRequest.getOrderItems());
 
         order.setOrder_date(LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC));
         //order.setId(1);
