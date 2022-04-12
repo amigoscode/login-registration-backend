@@ -1,5 +1,8 @@
 server:
+
   port: 8080
+
+
   error:
     include-message: always
     include-binding-errors: always
@@ -14,6 +17,7 @@ spring:
     initialization-mode: ALWAYS
     url: jdbc:mysql://localhost:3306/ethniconnect?serverTimezone=UTC
     #url: jdbc:mysql://ethniconnectdb.cs03gfixeofo.us-east-2.rds.amazonaws.com:3306/ethniconnect
+    #ethni-connect.ciff6u6uo7qd.us-east-2.rds.amazonaws.com (new updated saranya's)
     username: root
   jpa:
     hibernate:
