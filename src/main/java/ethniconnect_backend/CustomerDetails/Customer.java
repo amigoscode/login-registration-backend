@@ -1,14 +1,10 @@
 package ethniconnect_backend.CustomerDetails;
 
-import ethniconnect_backend.ChefCreateMenu.ChefMenu;
-import ethniconnect_backend.Order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor

@@ -2,14 +2,11 @@ package ethniconnect_backend.ChefCreateMenu;
 
 import ethniconnect_backend.ChefDetails.Chef;
 import ethniconnect_backend.Cuisines.CuisineCategory;
-import ethniconnect_backend.Order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -49,5 +46,6 @@ public class ChefMenu {
             joinColumns = @JoinColumn(name = "menu_item_id"),
             inverseJoinColumns = @JoinColumn(name = "cuisine_id"))
     Set<CuisineCategories> selectedCuisines;*/
+
 
 }

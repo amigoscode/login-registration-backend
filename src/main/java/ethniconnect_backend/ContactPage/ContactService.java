@@ -1,11 +1,8 @@
 package ethniconnect_backend.ContactPage;
 
-import ethniconnect_backend.ChefSignup.ChefSignupRequest;
 import ethniconnect_backend.ChefSignup.EmailValidator;
 import ethniconnect_backend.ChefSignup.token.ConfirmationTokenService;
-import ethniconnect_backend.UserCredentials.UserCredentials;
 import ethniconnect_backend.UserCredentials.UserCredentialsService;
-import ethniconnect_backend.UserCredentials.UserRole;
 
 import ethniconnect_backend.email.EmailSender;
 import ethniconnect_backend.email.EmailService;
@@ -13,7 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.transform.sax.SAXTransformerFactory;
 import java.util.List;
 
 @Service
@@ -69,7 +65,7 @@ public void saveContactRequest(Contact contact) {
 
 
     contactRepository.save(contact);
-    emailSender.send(
+    emailSender.Contactsend(
             "ethniconnect@gmail.com",
             emailService.buildContactEmail(contact.getMessage(),contact.getEmailid()));
     contactRepository.save(contact);

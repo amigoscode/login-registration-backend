@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,7 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "orders")
-public class Order {
+@Transactional
+public class Orders {
 
     @Id
     @GeneratedValue
@@ -28,9 +30,10 @@ public class Order {
     private long chef_loginid;
 
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "order_id",referencedColumnName = "orderid",insertable = false,updatable = false)
+    @OneToMany
+    @JoinColumn(name = "orderid", referencedColumnName = "orderid", insertable = false, updatable = false)
     private List<OrderItem> orderItems;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cust_loginid", referencedColumnName = "loginid", insertable = false, updatable = false)
     private Customer customer;
@@ -38,6 +41,7 @@ public class Order {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "chef_loginid", referencedColumnName = "loginid", insertable = false, updatable = false)
     private Chef chef;
+
 
 
 

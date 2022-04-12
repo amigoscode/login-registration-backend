@@ -1,5 +1,8 @@
 server:
-  port: 8501
+
+  port: 8080
+
+
   error:
     include-message: always
     include-binding-errors: always
@@ -10,7 +13,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: Saranya1994
+    password: bharani16
     initialization-mode: ALWAYS
     url: jdbc:mysql://localhost:3306/ethniconnect?serverTimezone=UTC
     #url: jdbc:mysql://ethniconnectdb.cs03gfixeofo.us-east-2.rds.amazonaws.com:3306/ethniconnect
@@ -40,7 +43,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: ethniconnect@gmail.com
-    password: nftvtqgflwntjipb
+    password: jbjkxybezpvligxn
 
 
     properties:
