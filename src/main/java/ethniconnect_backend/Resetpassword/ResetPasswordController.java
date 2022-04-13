@@ -24,7 +24,7 @@ public class ResetPasswordController {
     public RedirectView confirm(@RequestParam("token") String token) {
          String email=resetPasswordService.confirmToken(token);
         RedirectView redirectView = new RedirectView();
-        String redirectUrl = "https://fullstackdeveloper.guru?email="+email;
+        String redirectUrl = "http://localhost:4200/resetpassword?email="+email;
         redirectView.setUrl(redirectUrl);
 
         return redirectView;

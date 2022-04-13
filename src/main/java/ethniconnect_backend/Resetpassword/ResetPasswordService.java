@@ -62,10 +62,13 @@ public class ResetPasswordService {
         confirmationTokenService.setConfirmedAt(token);
 
         return confirmationToken.getAppUser().getEmail();
+
     }
     public void updatePassword(UpdatePassword updatePassword) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(updatePassword.getNewPwd());
+
+        //UserCredentials userCredentials = userCredentialsRepository.findByEmail(resetPasswordRequest.getEmailId()).get()
         UserCredentials userCredentials = userCredentialsRepository.findByEmail(updatePassword.getEmailId()).get();
         userCredentials.setPassword(encodedPassword);
         userCredentials.setResetpasswordtoken(null);
