@@ -14,7 +14,7 @@ import javax.persistence.Enumerated;
 public class ChefMenuItem {
 
     @Enumerated(EnumType.STRING)
-    private MenuCategories menucategory;
+    private MenuCategories menucategories;
     private String menu_item_image;
     private String item_name;
     private double menu_item_price;
