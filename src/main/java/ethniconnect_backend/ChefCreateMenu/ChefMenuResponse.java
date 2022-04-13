@@ -4,6 +4,8 @@ import lombok.*;
 
 @Data
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @ToString
 public class ChefMenuResponse {

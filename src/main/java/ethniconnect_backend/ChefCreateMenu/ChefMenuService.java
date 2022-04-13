@@ -151,13 +151,13 @@ public class ChefMenuService  {
         }
      return chefList;
     }
-    public ChefMenuGETResponse getChefMenuByLoginId(long login_id) {
+    /*public ChefMenuGETResponse getChefMenuByLoginId(long login_id) {
         Chef chef = new Chef();
         chef.setLoginid(login_id);
         List<ChefMenu> chefMenuList = chefMenuRepository.findAllByChef(chef);
         List<ChefMenuResponse> chefMenuResponseList = new ArrayList<>();
 
-       /* ChefMenuGETResponse chefMenuGETResponse = ChefMenuGETResponse.builder()
+       *//* ChefMenuGETResponse chefMenuGETResponse = ChefMenuGETResponse.builder()
                 .cuisine_id(chefMenu.getCuisineCategory().getId())
                 .login_id(chefMenu.getLogin_id())
                 .menucategories(chefMenu.getMenucategories())
@@ -167,7 +167,7 @@ public class ChefMenuService  {
                 .item_ingredients(chefMenu.getItem_ingredients())
                 .item_intresting_facts(chefMenu.getItem_intresting_facts())
                 .week(chefMenu.getWeek())
-                .build();*/
+                .build();*//*
         for(ChefMenu chefMenu:chefMenuList)
         {
             chefMenuResponseList.add
@@ -188,7 +188,35 @@ public class ChefMenuService  {
         return ChefMenuGETResponse.builder().chefMenuList(chefMenuResponseList).build();
     }
 
-//        public String deleteChefMenu(int chefMenu_id)
+*/
+    public ChefMenuGETResponse getChefMenuByLoginId(long login_id) {
+        Chef chef = new Chef();
+        chef.setLoginid(login_id);
+        List<ChefMenu> chefMenuList = chefMenuRepository.findAllByChef(chef);
+        List<ChefMenuResponse> chefMenuResponseList = new ArrayList<>();
+
+       
+        for(ChefMenu chefMenu:chefMenuList)
+        {
+            chefMenuResponseList.add
+                    ( ChefMenuResponse
+                            .builder()
+                            .menuid(chefMenu.getId())
+                            .menu_item_image(chefMenu.getMenu_item_image()!=null?chefMenu.getMenu_item_image():null)
+                            .menucategory(chefMenu.getMenucategories().toString())
+                            .cuisineCategory(chefMenu.getCuisineCategory().getCuisine_name())
+                            .menu_item_price(chefMenu.getMenu_item_price())
+                            .item_name(chefMenu.getItem_name())
+                            .item_ingredients(chefMenu.getItem_ingredients())
+                            .item_intresting_facts(chefMenu.getItem_intresting_facts())
+                            .week(chefMenu.getWeek()!=null?chefMenu.getWeek().toString():null)
+                            .build()
+                    );
+        }
+        return ChefMenuGETResponse.builder().chefMenuList(chefMenuResponseList).build();
+    }
+
+    //        public String deleteChefMenu(int chefMenu_id)
 //    {
 //        chefMenuRepository.deleteById(chefMenu_id);
 //        return "chef Menu ietem removed !!" + chefMenu_id;
