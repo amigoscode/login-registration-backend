@@ -1,7 +1,8 @@
 package ethniconnect_backend.email;
 
 public interface EmailSender {
-    void send(String to, String email);
-    void Contactsend(String to, String email);
-    void ResentPwdSend(String to, String email);
+    void send(String to, String emailContent);
+    void Contactsend(String to, String emailContent);
+    void ResentPwdSend(String to, String emailContent);
+    void orderRequest(String to, String emailContent);
 }

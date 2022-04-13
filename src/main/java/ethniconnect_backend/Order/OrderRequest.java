@@ -11,7 +11,7 @@ import java.util.List;
 @ToString
 public class OrderRequest {
 
-    private long chefLoginid;
+    //private long chefLoginid;
     private long customerLoginid;
     private int orderid;
     private double totalprice;

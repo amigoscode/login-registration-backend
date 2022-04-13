@@ -1,19 +1,15 @@
 package ethniconnect_backend.Order;
 
 import ethniconnect_backend.ChefCreateMenu.ChefMenu;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Transactional
 @Setter
+@Getter
 @Entity (name = "orderitems")
 public class OrderItem {
     @Id
@@ -24,8 +20,8 @@ public class OrderItem {
     private int quantity;
     private int orderid;
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id",referencedColumnName = "id",insertable = false,updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id",insertable = false, updatable=false)
     private ChefMenu chefMenu;
 
 //

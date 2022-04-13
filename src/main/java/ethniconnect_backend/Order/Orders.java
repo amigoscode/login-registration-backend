@@ -30,7 +30,6 @@ public class Orders {
     private LocalDateTime order_date;
     private double order_amount;
     private long cust_loginid;
-    private long chef_loginid;
 
 
 
@@ -40,13 +39,10 @@ public class Orders {
 
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    /*@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cust_loginid", referencedColumnName = "loginid", insertable = false, updatable = false)
-    private Customer customer;
+    private Customer customer;*/
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "chef_loginid", referencedColumnName = "loginid", insertable = false, updatable = false)
-    private Chef chef;
 
 //    public void addOrderItems(OrderItem orderItem) {
 //        orderItems.add(orderItem);

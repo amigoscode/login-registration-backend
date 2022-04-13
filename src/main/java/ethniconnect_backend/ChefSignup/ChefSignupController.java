@@ -3,6 +3,7 @@ package ethniconnect_backend.ChefSignup;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 @CrossOrigin()
 @RestController
@@ -25,5 +26,14 @@ public class ChefSignupController {
         return registrationService.confirmToken(token);
     }
 
+  /* @GetMapping("api/v1/registration/confirm")
+    public RedirectView confirm(@RequestParam("token") String token) {
+        String email=registrationService.confirmToken(token);
+        RedirectView redirectView = new RedirectView();
+        String redirectUrl = "http://localhost:4200/chefloginsetup?email="+email;
+        redirectView.setUrl(redirectUrl);*//*
+
+        return redirectView;
+    }*/
 
  }

@@ -61,6 +61,8 @@ public class ChefMenuService  {
             chefMenu.setChef(chef.get());
             chefMenu.setItem_name(chefMenuRequest.getItem_name());
             chefMenu.setMenu_item_image(chefMenuItem.getMenu_item_image());
+            chefMenu.setItem_intresting_facts(chefMenuItem.getItem_intresting_facts());
+            chefMenu.setItem_name(chefMenuItem.getItem_name());
             chefMenu.setMenucategories(chefMenuItem.getMenucategory());
             chefMenu.setItem_ingredients(chefMenuItem.getItem_ingredients());
             chefMenu.setMenu_item_price(chefMenuItem.getMenu_item_price());
