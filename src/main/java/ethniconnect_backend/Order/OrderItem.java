@@ -20,7 +20,7 @@ public class OrderItem {
     private int quantity;
     private int orderid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "menu_id",insertable = false, updatable=false)
     private ChefMenu chefMenu;
 
