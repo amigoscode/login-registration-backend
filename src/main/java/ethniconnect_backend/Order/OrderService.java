@@ -83,8 +83,8 @@ public class OrderService {
         //Optional <Chef> chef = chefRepository.findByLoginid(savedOrder.getOrderItems().get(0).getChefMenu().getChef().getLoginid());
 
         emailSender.orderRequest(
-                "ethniconnect@gmail.com",
-                //orderRepository.findByOrderid(orderid).get().getOrderItems().get(0).getChefMenu().getChef().getChef_emailid(),
+                //"ethniconnect@gmail.com",
+                orderRepository.findByOrderid(orderRequest.getOrderid()).get().getOrderItems().get(0).getChefMenu().getChef().getChef_emailid(),
                 emailService.buildOrderRequestEmail(savedOrder.getOrderid(),
                         customer.get().getCust_emailid(),
                         savedOrder.getOrderItems().toString()));
