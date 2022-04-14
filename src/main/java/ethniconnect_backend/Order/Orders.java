@@ -35,7 +35,7 @@ public class Orders {
 
     @OneToMany
     @JoinColumn(name = "orderid", referencedColumnName = "orderid", insertable = false, updatable = false)
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private   List<OrderItem> orderItems = new ArrayList<>();
 
 
 

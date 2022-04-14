@@ -2,16 +2,15 @@ package ethniconnect_backend.ChefCreateMenu;
 
 import ethniconnect_backend.ChefDetails.Chef;
 import ethniconnect_backend.Cuisines.CuisineCategory;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Getter
+@Setter
 @Entity
 @Table(name = "chefmenu")
 public class ChefMenu {
@@ -30,6 +29,7 @@ public class ChefMenu {
     private String item_intresting_facts;
     @Enumerated(EnumType.STRING)
     private  Week week;
+    private long loginid;
 
     //@ManyToOne
     @ManyToOne
@@ -39,7 +39,7 @@ public class ChefMenu {
 //    Set<Order> orders;
 
     @ManyToOne
-    @JoinColumn (name="loginid")
+    @JoinColumn (name="loginid", insertable = false, updatable = false)
     private Chef chef;
     /*@JoinTable(
             name = "selected_cuisines",

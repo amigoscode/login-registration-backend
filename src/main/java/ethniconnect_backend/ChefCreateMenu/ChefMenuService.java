@@ -60,6 +60,7 @@ public class ChefMenuService  {
             chefMenu.setCuisineCategory(cuisineCategory.get());
             chefMenu.setChef(chef.get());
             chefMenu.setItem_name(chefMenuRequest.getItem_name());
+            chefMenu.setLoginid(chef.get().getLoginid());
             chefMenu.setMenu_item_image(chefMenuItem.getMenu_item_image());
             chefMenu.setItem_intresting_facts(chefMenuItem.getItem_intresting_facts());
             chefMenu.setItem_name(chefMenuItem.getItem_name());

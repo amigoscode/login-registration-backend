@@ -3,13 +3,10 @@ package ethniconnect_backend.Order;
 import ethniconnect_backend.ChefCreateMenu.*;
 import ethniconnect_backend.ChefDetails.Chef;
 import ethniconnect_backend.ChefDetails.ChefRepository;
-import ethniconnect_backend.ChefSignup.EmailValidator;
-import ethniconnect_backend.ChefSignup.token.ConfirmationTokenService;
 import ethniconnect_backend.Cuisines.CuisineCategoriesRepository;
 import ethniconnect_backend.CustomerDetails.Customer;
 import ethniconnect_backend.CustomerDetails.CustomerRepository;
 import ethniconnect_backend.UserCredentials.UserCredentialsRepository;
-import ethniconnect_backend.UserCredentials.UserCredentialsService;
 import ethniconnect_backend.email.EmailSender;
 import ethniconnect_backend.email.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +38,7 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+
     @Autowired
     private OrderItemsRepository orderItemsRepository;
 
@@ -49,13 +47,6 @@ public class OrderService {
     OrderItemsService orderItemsService;
 
     public Integer placeOrder(OrderRequest orderRequest) {
-
-
-
-        /*String link = "www.google.com";*/
-
-
-
 
 
 
@@ -68,32 +59,41 @@ public class OrderService {
         order.setOrderItems(orderRequest.getOrderItems());
 
         order.setOrder_date(LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC));
-        //order.setId(1);
+
         Orders savedOrder = orderRepository.save(order);
         Optional <Customer> customer = customerRepository.findByLoginid(orderRequest.getCustomerLoginid());
 
-        String chefEmailId=null;
+
         for(OrderItem orderItem:orderRequest.getOrderItems())
         {
             orderItem.setOrderid(savedOrder.getOrderid());
-            orderItemsRepository.save(orderItem);
-        }
+            OrderItem saved=orderItemsRepository.save(orderItem);
 
-          //savedOrder = getOrder(savedOrder.getOrderid());
-        //Optional <Chef> chef = chefRepository.findByLoginid(savedOrder.getOrderItems().get(0).getChefMenu().getChef().getLoginid());
+            //Optional<Chef> chef= chefRepository.findByLoginid(saved.getChefMenu().getChef().getLoginid());
+            //String chefemail = chef.get().getChef_emailid();
+            /*emailSender.orderRequest(
+                    chefemail,
+                    //"ethniconnect@gmail.com",
+                    emailService.buildOrderRequestEmail(savedOrder.getOrderid(),
+                            customer.get().getCust_emailid(),
+                            savedOrder.getOrderItems().toString()));*/
+        }
+        OrderItem orderItem = orderItemsRepository.findOrderItemByOrderid(savedOrder.getOrderid()).get(0);
+        ChefMenu chefMenu = chefMenuRepository.findById(orderItem.getMenu_id()).get();
+        Optional<Chef> chef  = chefRepository.findByLoginid(chefMenu.getLoginid());
+        String chefEmailId= chef.get().getChef_emailid();
 
         emailSender.orderRequest(
+               chefEmailId,
                 //"ethniconnect@gmail.com",
-                orderRepository.findByOrderid(orderRequest.getOrderid()).get().getOrderItems().get(0).getChefMenu().getChef().getChef_emailid(),
                 emailService.buildOrderRequestEmail(savedOrder.getOrderid(),
                         customer.get().getCust_emailid(),
                         savedOrder.getOrderItems().toString()));
 
                 return savedOrder.getOrderid();
 
-
-
     }
+
 
     public Orders getOrder(int orderid) {
 
