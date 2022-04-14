@@ -1,6 +1,8 @@
 package ethniconnect_backend.Cuisines;
 
 
+import ethniconnect_backend.ChefDetails.Chef;
+import ethniconnect_backend.ChefDetails.ChefRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,11 @@ public class CuisineCategoriesController {
     public CuisineCategory findcuisinecategoryrequestbyId(@PathVariable int id)
     {
         return cuisinesCategoriesService.getCuisineCategoryById(id);
+    }
+
+    @PutMapping("/updatecuisine")
+    public CuisineCategory updateChef(@RequestBody CuisineCategory cuisineCategory) {
+        return cuisinesCategoriesService.Updatecuisinecategory(cuisineCategory);
     }
 
 }

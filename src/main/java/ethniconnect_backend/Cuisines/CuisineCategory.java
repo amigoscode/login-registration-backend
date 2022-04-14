@@ -22,6 +22,8 @@ public class CuisineCategory {
     private int id;
     @Column(unique = true)
     private String cuisine_name;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String cuisine_image;
 
 //

@@ -15,9 +15,10 @@ public class ResetPasswordController {
     ResetPasswordService resetPasswordService;
 
     @PostMapping(path="resetpassword")
-    public  void restpassword(@RequestBody ResetPasswordRequest resetPasswordRequest)
+    public  String restpassword(@RequestBody ResetPasswordRequest resetPasswordRequest)
     {
         resetPasswordService.resetPassword(resetPasswordRequest);
+        return resetPasswordRequest.getEmailId();
     }
 
     @GetMapping(path = "/resetpassword/confirm")
