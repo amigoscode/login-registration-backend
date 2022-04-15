@@ -97,12 +97,11 @@ public class OrderService {
         String itemname = chefMenu.getItem_name();
         int quantity = orderItems.get(0).getQuantity();
 
-        emailSender.emailOrder(
+        emailSender.emailChefOrderDetails(
                chefEmailId,
                 //"ethniconnect@gmail.com",
                 emailService.buildOrderRequestEmail(savedOrder.getOrderid(),
-                        customer.get().getCust_emailid(),
-                        quantity));
+                        customer.get().getCust_emailid() ,orderSummary));
         emailSender.emailCustomerOrderDetails(
                 customer.get().getCust_emailid(),
                 //"ethniconnect@gmail.com",

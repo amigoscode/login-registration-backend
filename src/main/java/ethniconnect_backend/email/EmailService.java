@@ -236,7 +236,7 @@ public class EmailService implements EmailSender{
                 "</div></div>";
     }
 
-    public String buildOrderRequestEmail(int orderid ,String useremailid, int quantity) {
+    public String buildOrderRequestEmail(int orderid, String useremailid, List<OrderSummaryEmail> orderSummary) {
 
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
@@ -298,7 +298,7 @@ public class EmailService implements EmailSender{
                 "You received an Order request from "+useremailid+" </p>" +
                 "<blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">  </p></blockquote>\n <p> Order Number : "+orderid+"</p>" +
                 "<p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> " +
-                "Quantity:"+quantity+" </p>" +
+                "Order Details:"+buildOrderSummaryHtml(orderSummary)+" </p>" +
                 "<blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">  </p></blockquote>\n <p> </p>" +
                 "        \n" +
 
@@ -469,7 +469,7 @@ public class EmailService implements EmailSender{
         }
     }
 
-    public void emailOrder(String to, String email) {
+    public void emailChefOrderDetails(String to, String email) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper =
