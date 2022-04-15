@@ -43,7 +43,7 @@ public class ChefSignupService {
         );
 
         /*String link = "www.google.com";*/
-        String link = "http://backendaws-env.eba-fdddft5p.us-east-2.elasticbeanstalk.com/api/v1/registration/confirm?token=" + token;
+        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(
                email,
                 emailService.buildEmail("user", link));
