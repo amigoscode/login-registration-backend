@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -78,18 +80,35 @@ public class OrderService {
                             customer.get().getCust_emailid(),
                             savedOrder.getOrderItems().toString()));*/
         }
-        OrderItem orderItem = orderItemsRepository.findOrderItemByOrderid(savedOrder.getOrderid()).get(0);
-        ChefMenu chefMenu = chefMenuRepository.findById(orderItem.getMenu_id()).get();
+        List<OrderSummaryEmail> orderSummary = new ArrayList<>();
+        OrderSummaryEmail orderSummaryEmail=null;
+        List<OrderItem> orderItems = orderItemsRepository.findOrderItemByOrderid(savedOrder.getOrderid());
+        for(int i=0;i<orderItems.size();i++ )
+        {
+            orderSummaryEmail = new OrderSummaryEmail();
+            orderSummaryEmail.setItemname(chefMenuRepository.findById(orderItems.get(i).getMenu_id()).get().getItem_name());
+            orderSummaryEmail.setQuantity(orderItems.get(i).getQuantity());
+            orderSummaryEmail.setSpecialInstructions(orderItems.get(i).getSpecial_instructions());
+            orderSummary.add(orderSummaryEmail);
+        }
+        ChefMenu chefMenu = chefMenuRepository.findById(orderItems.get(0).getMenu_id()).get();
         Optional<Chef> chef  = chefRepository.findByLoginid(chefMenu.getLoginid());
         String chefEmailId= chef.get().getChef_emailid();
+        String itemname = chefMenu.getItem_name();
+        int quantity = orderItems.get(0).getQuantity();
 
-        emailSender.orderRequest(
+        emailSender.emailChefOrderDetails(
                chefEmailId,
                 //"ethniconnect@gmail.com",
                 emailService.buildOrderRequestEmail(savedOrder.getOrderid(),
-                        customer.get().getCust_emailid(),
-                        savedOrder.getOrderItems().toString()));
+                        customer.get().getCust_emailid() ,orderSummary));
+        emailSender.emailCustomerOrderDetails(
+                customer.get().getCust_emailid(),
+                //"ethniconnect@gmail.com",
+                emailService.buildOrderDetailsEmail(savedOrder.getOrderid(),
+                        chefEmailId,orderSummary));
 
+        /*savedOrder.getOrderItems().toString())*/
                 return savedOrder.getOrderid();
 
     }
