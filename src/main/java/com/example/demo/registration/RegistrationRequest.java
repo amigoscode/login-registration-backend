@@ -16,12 +16,14 @@ public class RegistrationRequest {
     private  String password;
 
 
-    //We have to use this now a days, if not we are going to face the
+    //We have to use this nowadays, if not we are going to face the
     // [com-fasterxml-jackson-databind-exc-invaliddefinitionexception-cannot-construct-instance-of-xyz-no-creators-
     // like-default-construct-exist-cannot-deserialize-from-object-value-no-delega/]
     //I faced the error recently.
-    //I have used the statergy of default constructor.
+    //I have used the strategy of default constructor.
 
+
+    //default constructor
     public RegistrationRequest() {
     }
 
