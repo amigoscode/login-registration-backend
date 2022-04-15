@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 5000
 
 
 
@@ -15,8 +15,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: bharani16
     initialization-mode: ALWAYS
-    url: #jdbc:mysql://ethniconnect.chakxnfle4p3.us-east-2.rds.amazonaws.com:3306/ethniconnect?serverTimezone=UTC
-     jdbc:mysql://localhost:3306/ethniconnect?serverTimezone=UTC
+    url: jdbc:mysql://ethniconnect.chakxnfle4p3.us-east-2.rds.amazonaws.com:3306/ethniconnect?serverTimezone=UTC
+     #jdbc:mysql://localhost:3306/ethniconnect?serverTimezone=UTC
 
     #url: jdbc:mysql://ethniconnectdb.cs03gfixeofo.us-east-2.rds.amazonaws.com:3306/ethniconnect
     #ethni-connect.ciff6u6uo7qd.us-east-2.rds.amazonaws.com (new updated saranya's)
