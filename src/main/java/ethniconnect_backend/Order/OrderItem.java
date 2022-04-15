@@ -2,8 +2,10 @@ package ethniconnect_backend.Order;
 
 import ethniconnect_backend.ChefCreateMenu.ChefMenu;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.sql.Time;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +21,7 @@ public class OrderItem {
     private String special_instructions;
     private int quantity;
     private int orderid;
+    private Time pickuptime;
 
     @ManyToOne
     @JoinColumn(name = "menu_id",insertable = false, updatable=false)
