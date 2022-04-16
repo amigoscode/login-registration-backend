@@ -1,27 +1,52 @@
 server:
+  port: 8080
+
+
+
   error:
     include-message: always
     include-binding-errors: always
 
+
+
+
 spring:
   datasource:
-    password:
-    url: jdbc:postgresql://localhost:5432/registration
-    username:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: bharani16
+    initialization-mode: ALWAYS
+    url: #jdbc:mysql://ethniconnect.chakxnfle4p3.us-east-2.rds.amazonaws.com:3306/ethniconnect?serverTimezone=UTC
+     jdbc:mysql://localhost:3306/ethniconnect?serverTimezone=UTC
+
+    #url: jdbc:mysql://ethniconnectdb.cs03gfixeofo.us-east-2.rds.amazonaws.com:3306/ethniconnect
+    #ethni-connect.ciff6u6uo7qd.us-east-2.rds.amazonaws.com (new updated saranya's)
+    username: root
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     show-sql: true
 
+ # mail:
+  #  host: smtp.gmail.com
+   # port: 587
+    #username:
+    #password:
+    #properties:
+      #mail:
+        #smtp:
+          #auth: true
+          #starttls:
+            #enable: true
   mail:
-    host: localhost
-    port: 1025
-    username: hello
-    password: hello
+    host: smtp.gmail.com
+    port: 587
+    username: ethniconnect@gmail.com
+    password: jbjkxybezpvligxn
+
 
     properties:
       mail:
@@ -35,3 +60,7 @@ spring:
           timeout: 3000
           writetimeout: 5000
 
+  servlet :
+    multipart :
+      max-file-size: 15MB
+      max-request-size: 15MB
