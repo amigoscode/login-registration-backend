@@ -1,5 +1,6 @@
-package com.example.demo.email;
+package com.example.tx.service;
 
+import com.example.tx.entity.email.EmailSender;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 @Service
 @AllArgsConstructor
-public class EmailService implements EmailSender{
+public class EmailService implements EmailSender {
 
     private final static Logger LOGGER = LoggerFactory
             .getLogger(EmailService.class);

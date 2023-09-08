@@ -1,5 +1,6 @@
-package com.example.demo.registration.token;
+package com.example.tx.repository;
 
+import com.example.tx.entity.registration.token.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

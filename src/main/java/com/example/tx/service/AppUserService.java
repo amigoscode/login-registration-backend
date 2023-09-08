@@ -1,7 +1,8 @@
-package com.example.demo.appuser;
+package com.example.tx.service;
 
-import com.example.demo.registration.token.ConfirmationToken;
-import com.example.demo.registration.token.ConfirmationTokenService;
+import com.example.tx.entity.user.AppUser;
+import com.example.tx.entity.registration.token.ConfirmationToken;
+import com.example.tx.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
