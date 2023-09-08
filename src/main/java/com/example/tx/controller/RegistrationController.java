@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/registration")
+@RequestMapping(path = "/signup")
 @AllArgsConstructor
 public class RegistrationController {
 
@@ -14,6 +14,7 @@ public class RegistrationController {
 
     @PostMapping
     public String register(@RequestBody RegistrationRequest request) {
+        System.out.println("api called!");
         return registrationService.register(request);
     }
 

@@ -38,7 +38,3 @@ spring:
           timeout: 3000
           writetimeout: 5000
 
-
-app:
-  BASE_URL: http://localhost:8080/
-
