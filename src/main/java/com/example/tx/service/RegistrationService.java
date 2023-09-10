@@ -1,10 +1,10 @@
 package com.example.tx.service;
 
+import com.example.tx.entity.email.EmailSender;
 import com.example.tx.entity.registration.EmailValidator;
 import com.example.tx.entity.registration.RegistrationRequest;
 import com.example.tx.entity.user.AppUser;
 import com.example.tx.entity.user.AppUserRole;
-import com.example.tx.entity.email.EmailSender;
 import com.example.tx.entity.registration.token.ConfirmationToken;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ public class RegistrationService {
     private final AppUserService appUserService;
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
-    private final EmailSender emailSender;
+    private final EmailService emailSender;
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
 
         if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
+            throw new IllegalStateException("Email is not valid");
         }
 
         String token = appUserService.signUpUser(
@@ -36,11 +36,10 @@ public class RegistrationService {
                         request.getEmail(),
                         request.getPassword(),
                         AppUserRole.USER
-
                 )
         );
 
-        String link = "http://localhost:8080/signup/confirm?token=" + token;
+        String link = "http://localhost:8080/signup/confirm/" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));

@@ -14,8 +14,9 @@ public class DevCorsConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:8080") // Adjust the development frontend URL
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedMethods("*")
                 .allowCredentials(true)
+                .allowedHeaders("*")
                 .maxAge(3600);
     }
 }

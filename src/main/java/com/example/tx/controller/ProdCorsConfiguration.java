@@ -13,8 +13,8 @@ public class ProdCorsConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
-                .allowedOrigins("https://your-production-frontend.com") // Adjust the production frontend URL
+        registry.addMapping("/**")
+                .allowedOrigins("https://your-production-frontend.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowCredentials(true)
                 .maxAge(3600);

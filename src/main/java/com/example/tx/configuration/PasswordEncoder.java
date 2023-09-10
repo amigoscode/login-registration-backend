@@ -1,4 +1,4 @@
-package com.example.tx.security;
+package com.example.tx.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

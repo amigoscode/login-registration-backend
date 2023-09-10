@@ -1,26 +1,40 @@
 package com.example.tx.controller;
 
+import com.example.tx.configuration.CaptchaProperties;
 import com.example.tx.entity.registration.RegistrationRequest;
+import com.example.tx.entity.registration.RegistrationRequestDto;
+import com.example.tx.service.CaptchaService;
 import com.example.tx.service.RegistrationService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(path = "/signup")
+@CrossOrigin
 @AllArgsConstructor
 public class RegistrationController {
 
     private final RegistrationService registrationService;
+    private final CaptchaProperties captchaProperties;
+    private final CaptchaService captchaService;
 
     @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
-        System.out.println("api called!");
-        return registrationService.register(request);
+    public String register(@RequestBody RegistrationRequestDto request) {
+        // Verify reCAPTCHA response
+        captchaService.processResponse(request.getRecaptchaResponse(), CaptchaService.REGISTER_ACTION);
+
+        return registrationService.register(new RegistrationRequest(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword()));
     }
 
-    @GetMapping(path = "confirm")
-    public String confirm(@RequestParam("token") String token) {
+    @PostMapping(path = "/confirm/{token}")
+    public String confirm(@PathVariable("token") String token) {
         return registrationService.confirmToken(token);
     }
+
+
 
 }
