@@ -8,9 +8,9 @@ spring:
   profiles:
     active: development
   datasource:
-    password: knoxer1403
+    password: X
     url: jdbc:postgresql://localhost:5432/tx
-    username: arthu
+    username: X
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -21,11 +21,10 @@ spring:
     show-sql: true
 
   mail:
-    host: localhost
-    port: 1025
-    username: hello
-    password: hello
-
+    host: smtp.gmail.com
+    port: 587
+    username: x
+    password: X
     properties:
       mail:
         smtp:
@@ -37,4 +36,15 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
+
+# reCAPTCHA
+google:
+  recaptcha:
+    secret: X
+    url: https://www.google.com/recaptcha/api/siteverify
+    threshold: 0.5
+
+# apps env variables
+app:
+  BASE_URL: http://localhost:8080/
 
