@@ -26,7 +26,7 @@ public class RegistrationService {
                 test(request.getEmail());
 
         if (!isValidEmail) {
-            throw new IllegalStateException("Email is not valid");
+            throw new IllegalStateException("Email is not valid.");
         }
 
         String token = appUserService.signUpUser(
@@ -40,7 +40,7 @@ public class RegistrationService {
         );
 
         String link = "http://localhost:8080/signup/confirm/" + token;
-        emailSender.send(
+        emailSender.send("TradeX - Confirm your email",
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
 
@@ -52,22 +52,22 @@ public class RegistrationService {
         ConfirmationToken confirmationToken = confirmationTokenService
                 .getToken(token)
                 .orElseThrow(() ->
-                        new IllegalStateException("token not found"));
+                        new IllegalStateException("Token was not found."));
 
         if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("email already confirmed");
+            throw new IllegalStateException("Email already confirmed.");
         }
 
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
 
         if (expiredAt.isBefore(LocalDateTime.now())) {
-            throw new IllegalStateException("token expired");
+            throw new IllegalStateException("Link has expired.");
         }
 
         confirmationTokenService.setConfirmedAt(token);
         appUserService.enableAppUser(
                 confirmationToken.getAppUser().getEmail());
-        return "confirmed";
+        return "Email confirmed.";
     }
 
     private String buildEmail(String name, String link) {
