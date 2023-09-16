@@ -1,4 +1,4 @@
-    package com.example.tx.controller;
+    package com.example.tx.configuration;
     import org.springframework.context.annotation.Configuration;
     import org.springframework.context.annotation.Profile;
     import org.springframework.web.servlet.config.annotation.CorsRegistry;
