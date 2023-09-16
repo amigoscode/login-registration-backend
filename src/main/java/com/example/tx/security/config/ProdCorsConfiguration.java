@@ -1,4 +1,5 @@
-package com.example.tx.controller;
+package com.example.tx.security.config;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -7,16 +8,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@Profile("development")
-public class DevCorsConfiguration implements WebMvcConfigurer {
+@Profile("production")
+public class ProdCorsConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8080") // Adjust the development frontend URL
-                .allowedMethods("*")
+                .allowedOrigins("https://your-production-frontend.com")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowCredentials(true)
-                .allowedHeaders("*")
                 .maxAge(3600);
     }
 }
