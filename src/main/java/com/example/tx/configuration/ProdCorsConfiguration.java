@@ -1,4 +1,3 @@
-
 package com.example.tx.configuration;
 
 import org.springframework.context.annotation.Configuration;
