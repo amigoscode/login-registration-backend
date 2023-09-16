@@ -6,14 +6,11 @@ import com.example.tx.entity.registration.RegistrationRequestDto;
 import com.example.tx.service.CaptchaService;
 import com.example.tx.service.RegistrationService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping(path = "/signup")
+@RequestMapping(path = "/api/signup")
 @CrossOrigin
 @AllArgsConstructor
 public class RegistrationController {
@@ -24,6 +21,7 @@ public class RegistrationController {
 
     @PostMapping
     public String register(@RequestBody RegistrationRequestDto request) {
+        System.out.println(request);
         // Verify reCAPTCHA response
         captchaService.processResponse(request.getRecaptchaResponse(), CaptchaService.REGISTER_ACTION);
 

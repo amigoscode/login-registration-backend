@@ -1,4 +1,4 @@
-package com.example.tx.configuration;
+package com.example.tx.security.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -14,9 +14,9 @@ public class DevCorsConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:8080") // Adjust the development frontend URL
-                .allowedMethods("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true)
-                .allowedHeaders("*")
+                .allowedHeaders("Authorization", "Content-Type")
                 .maxAge(3600);
     }
 }

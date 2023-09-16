@@ -1,11 +1,10 @@
 package com.example.tx.entity.registration.token;
 
 import com.example.tx.entity.user.AppUser;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter

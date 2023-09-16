@@ -1,19 +1,18 @@
 package com.example.tx.service;
 
-import com.example.tx.entity.email.EmailSender;
 import com.example.tx.entity.registration.EmailValidator;
 import com.example.tx.entity.registration.RegistrationRequest;
 import com.example.tx.entity.user.AppUser;
-import com.example.tx.entity.user.AppUserRole;
 import com.example.tx.entity.registration.token.ConfirmationToken;
-import lombok.AllArgsConstructor;
+import com.example.tx.entity.user.AppUserRole;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RegistrationService {
 
     private final AppUserService appUserService;
@@ -21,6 +20,7 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailService emailSender;
 
+    @Transactional
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
@@ -31,9 +31,9 @@ public class RegistrationService {
 
         String token = appUserService.signUpUser(
                 new AppUser(
-                        request.getFirstName(),
-                        request.getLastName(),
-                        request.getEmail(),
+                        request.getFirstName().toLowerCase(),
+                        request.getLastName().toLowerCase(),
+                        request.getEmail().toLowerCase(),
                         request.getPassword(),
                         AppUserRole.USER
                 )

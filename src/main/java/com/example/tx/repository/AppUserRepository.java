@@ -14,12 +14,12 @@ import java.util.Optional;
 public interface AppUserRepository
         extends JpaRepository<AppUser, Long> {
 
-    AppUser findByEmail(String email);
+    AppUser findByUsername(String username);
 
     @Transactional
     @Modifying
     @Query("UPDATE AppUser a " +
-            "SET a.enabled = TRUE WHERE a.email = ?1")
+            "SET a.enabled = TRUE WHERE a.username = ?1")
     int enableAppUser(String email);
 
 }

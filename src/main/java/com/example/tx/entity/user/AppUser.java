@@ -7,8 +7,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -33,7 +32,8 @@ public class AppUser implements UserDetails {
     private Long id;
     private String firstName;
     private String lastName;
-    private String email;
+    @Column(unique = true)
+    private String username;
     private String password;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
@@ -42,12 +42,12 @@ public class AppUser implements UserDetails {
 
     public AppUser(String firstName,
                    String lastName,
-                   String email,
+                   String username,
                    String password,
                    AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.appUserRole = appUserRole;
     }
@@ -66,10 +66,10 @@ public class AppUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
-    public String getEmail(){ return email; }
+    public String getEmail(){ return username; }
 
     public String getFirstName() {
         return firstName;
