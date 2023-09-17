@@ -1,6 +1,6 @@
 package com.example.tx.controller;
 
-import com.example.tx.configuration.CaptchaProperties;
+import com.example.tx.utils.CaptchaProperties;
 import com.example.tx.entity.registration.RegistrationRequest;
 import com.example.tx.entity.registration.RegistrationRequestDto;
 import com.example.tx.service.CaptchaService;

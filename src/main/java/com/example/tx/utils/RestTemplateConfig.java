@@ -1,4 +1,4 @@
-package com.example.tx.configuration;
+package com.example.tx.utils;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

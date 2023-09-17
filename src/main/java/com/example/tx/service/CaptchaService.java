@@ -1,17 +1,13 @@
 package com.example.tx.service;
 
-import com.example.tx.configuration.CaptchaProperties;
+import com.example.tx.utils.CaptchaProperties;
 import com.example.tx.entity.GoogleResponse;
 import com.example.tx.exception.ReCaptchaInvalidException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestOperations;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor

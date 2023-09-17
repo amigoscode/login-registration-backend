@@ -1,11 +1,10 @@
 package com.example.tx.service;
 
-import com.example.tx.configuration.EmailProperties;
+import com.example.tx.utils.EmailProperties;
 import com.example.tx.entity.email.EmailSender;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
